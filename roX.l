@@ -24,26 +24,23 @@ multiplicado\ por\ 			return MULT;
 
 mostrar						return PRINT;
 
-\".+\"						return STRING;
+\".+\"						return STR;
 
-{varName}					{	yylval.str = malloc(strlen(yytext)+1);
-								strcpy(yylval.str, yytext);
+{varName}					{	yylval.strval = malloc(strlen(yytext)+1);
+								strcpy(yylval.strval, yytext);
 								return IDENTIFIER;	
 							}
 
-{num}+						{	yylval.num = atoi(yytext); 
+{num}+						{	yylval.intval = atoi(yytext); 
 								return NUM;
 							}
 
-.							;
+\"[^\"]*\"					{  	char * str = malloc(strlen(yytext) - 1);
+								strncpy(str, yytext + 1, strlen(yytext) - 2);
+								yylval.strval = str;
+								return STR;
+							}
+
+.                     		return yytext[0];
 
 %%	
-
-int yywrap(void){
-	return 1;
-}
-
-int main(void){
-	yylex();
-	return 0;
-}

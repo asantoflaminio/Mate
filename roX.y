@@ -1,55 +1,140 @@
 %{
+	#include "ast.h"
+	#include "y.tab.h"
 	#include <stdio.h>
     #include <stdlib.h>
-    #include <math.h>
     #include <string.h>
 
-    #define MAXVAR 300
-    
-    void yyerror(char* s);
-    int symbolVal(char* symbol);
-    void updateSymbolVal(char* symbol, int val);
-    
-    char* varsName[MAXVAR];
-    int symbols[MAXVAR];
+    #define MAX_IDS 10000
+
+	int yylex();
+	void yyerror (char const *s);
+
+
+	int var_count = 0;
+
+	char * identifiers[MAX_IDS] = {0};
+
+	int getId(char * strId){
+		int i;
+		
+		for(i = 0 ; i < MAX_IDS && identifiers[i] != NULL ; i++){
+			if(strcmp(identifiers[i], strId) == 0){
+				return i;
+			}
+		}
+
+		if(i == MAX_IDS){
+			return -1;
+		}
+
+		identifiers[i] = malloc(strlen(strId));
+		strcpy(identifiers[i], strId);
+
+		return i;
+
+	}
+
 
 %}
 
-%start START
+%union {
+	int intval;
+	char * strval;
+
+	AssigmentNode * assigment;
+	PrintNode * printnode;
+
+	Block * block;
+
+	Statements * statements;
+}
+
+%start start
 
 %token BEGINPROGRAM ENDPROGRAM
 
 %token PLUS MINUS MULT
-%token PLUS_ONE MINUS_ONE
+%token PLUS_ONE SUB_ONE
 %token ASSIGN
 
 %token PRINT
 
-%token <num> NUM
-%token <str> IDENTIFIER
-%token <str> STRING
+%token <intval> NUM
+%token <strval> IDENTIFIER
+%token <strval> STR
 
-%type <num>	START OP EXPRESS VALUE NUMBER
+%type <block> block
+%type <statements> entry
+%type <printnode> print;
+%type <assigment> asig;
 
 %%
 
-START 	: BEGINPROGRAM OP START ENDPROGRAM 	{ ; }
-	  	| OP
-	  	;
+start 		: BEGINPROGRAM entry ENDPROGRAM  { produce($2); }
+			;
 
-OP 		: IDENTIFIER ASSIGN EXPRESS { $$ = $3; updateSymbolVal($1, $$); } 	
-	   	| PRINT IDENTIFIER	{ printf("%d\n", $2); }
-	   	;
+entry 		: block
+			   {
+				   	$$ = malloc(sizeof(*$$));
+					$$->type = $1->type;;
+					$$->expressionNode = $1->node;
+					$$->next = NULL;
+					
+					free($1);
 
-EXPRESS : IDENTIFIER { $$ = symbolVal($1); }
-		| VALUE {$$ = $1; }
-		; 
+				}
+			| block entry
+				{
+					$$ = malloc(sizeof(*$$));
+				
+					$$->type = $1->type;
+					$$->expressionNode = $1->node;
+					$$->next = $2;
+					
+					free($1);		
+				}
 
-VALUE   : NUMBER { $$ = $1; }
-		;
+			;
 
-NUMBER	: NUM { $$ = $1; }
-		;
+block		: asig
+				{	
+					$$ = malloc(sizeof(*$$));
+					$$->type = ASSIGNMENT;
+					$$->node = $1;
+				}
+			| print 
+				{
+					$$ = malloc(sizeof(*$$));
+					$$->type = PRINT_CALL;
+					$$->node = $1;
+				}
+			;
+
+
+
+asig		: IDENTIFIER ASSIGN NUM 
+				{ 
+										
+					$$ = malloc(sizeof(*$$));
+
+					$$->var_id = getId($1);
+					$$->type = INT_T;
+
+					int * value = malloc(sizeof(int));
+
+					memcpy(value, &$3, sizeof(int*));
+					$$->value = value;
+
+				} 	
+			;
+
+print 		: PRINT IDENTIFIER
+				{
+					$$ = malloc(sizeof(*$$));
+					$$->var_id = getId($2);
+				}
+	  		;
 
 %%
 
@@ -61,35 +146,3 @@ int main(void){
     return yyparse();
 }
 
-int computeSymbolIndex(char* token){ 
-    int i = 0;
-    for (; i < MAXVAR && varsName[i] != NULL; i++) {
-        if (strcmp(varsName[i], token) == 0) {
-            return i;
-        }
-    }
-
-    if (i == MAXVAR) {
-        yyerror("all variables slots have been used.");
-        return -1;
-    }
-    
-    varsName[i] = malloc(strlen(token)+1);
-    strcpy(varsName[i],token);
-    
-    return i;
-}
-
-int symbolVal(char* symbol){
-    int bucket = computeSymbolIndex(symbol);
-    return symbols[bucket];
-}
-
-void updateSymbolVal(char* symbol, int val){
-    int bucket = computeSymbolIndex(symbol);
-    symbols[bucket] = val;
-}
-
-void yyerror(char* s){
-    fprintf(stderr, "Error: %s\n", s);
-}

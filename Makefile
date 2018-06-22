@@ -8,6 +8,7 @@ all:
 	yacc -d $(GRAMMAR)
 	lex $(SCANNER)
 	gcc $(FLAGS) *.c -o $(PARSER)
+	
 clean:
 	rm y.tab.*
 	rm lex.yy.c 
