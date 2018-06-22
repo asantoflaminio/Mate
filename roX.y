@@ -26,7 +26,7 @@
 %token PRINT
 
 %token <num> NUM
-%token <str> VAR
+%token <str> IDENTIFIER
 %token <str> STRING
 
 %type <num>	START OP EXPRESS VALUE NUMBER
@@ -37,11 +37,11 @@ START 	: BEGINPROGRAM OP START ENDPROGRAM 	{ ; }
 	  	| OP
 	  	;
 
-OP 		: VAR ASSIGN EXPRESS { $$ = $3; updateSymbolVal($1, $$); } 	
-	   	| PRINT VAR	{ printf("%d\n", $2); }
+OP 		: IDENTIFIER ASSIGN EXPRESS { $$ = $3; updateSymbolVal($1, $$); } 	
+	   	| PRINT IDENTIFIER	{ printf("%d\n", $2); }
 	   	;
 
-EXPRESS : VAR { $$ = symbolVal($1); }
+EXPRESS : IDENTIFIER { $$ = symbolVal($1); }
 		| VALUE {$$ = $1; }
 		; 
 

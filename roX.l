@@ -28,7 +28,7 @@ mostrar						return PRINT;
 
 {varName}					{	yylval.str = malloc(strlen(yytext)+1);
 								strcpy(yylval.str, yytext);
-								return VAR;	
+								return IDENTIFIER;	
 							}
 
 {num}+						{	yylval.num = atoi(yytext); 
