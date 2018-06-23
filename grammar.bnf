@@ -1,0 +1,56 @@
+<S> ::=  "START" <code> "END"
+
+<code> ::= "" | <instruction> <code> | <control_sequence> <code>
+
+<instruction> ::= <declaration> <asign>"END_INSTR" 
+|<declaration> <asign_string>"END_INSTR" 
+|<declaration>"END_INSTR" 
+| <print>"END_INSTR" 
+| "VAR_NAME" <asign>"END_INSTR" 
+| "VAR_NAME" <asign_string>"END_INSTR" 
+| "VAR_NAME" "OP_PLUS_ONE" 
+| "VAR_NAME" "OP_SUB_ONE" 
+| in"END_INSTR"
+
+<declaration> ::= <type> "VAR_NAME"
+
+<type> ::= "INT_VAR" | "STRING_VAR"
+
+<asign> ::= "OP_ASSIGN" <expression>
+
+<print> ::= "OP_PRINT" "OPEN_PARENTHESIS" "STRING" "COMA" "STRING" "CLOSE_PARENTHESIS" 
+|"OP_PRINT" "OPEN_PARENTHESIS" "STRING" "COMA" "VAR_NAME" "CLOSE_PARENTHESIS"
+|"OP_PRINT" "OPEN_PARENTHESIS" "STRING" "COMA" "INTEGER" "CLOSE_PARENTHESIS"
+
+<in> ::= "OP_IN" "OPEN_PARENTHESIS" "STRING" "COMA" "AMPERSAND" "VAR_NAME" "CLOSE_PARENTHESIS" 
+
+<control_sequence> ::= <if> | <loop>
+
+<if> ::= "IF" "OPEN_PARENTHESIS" <boolean_expression> "CLOSE_PARENTHESIS" <open_block> <code> <close_block> |
+ "IF" "OPEN_PARENTHESIS" <boolean_expression> "CLOSE_PARENTHESIS" <open_block> <code> <close_block> "ELSE" <open_block> <code> <close_block>
+
+<loop> ::= "DO" <open_block> <code> <close_block> "WHILE" <open_parenthesis> <boolean_expresion> <close_parenthesis> | "WHILE" <open_parenthesis> <boolean_expresion> <close_parenthesis> <open_block> <code> <close_block>
+
+<open_block> ::= "OPEN_BLOCK"
+
+<close_block> ::= "CLOSE_BLOCK"
+
+<boolean_expression> ::= <boolean_expression> "OP_OR" <boolean_term> | <boolean_term>
+
+<boolean_term> ::= <boolean_term> "OP_AND" <boolean_factor> | <boolean_factor>
+
+<boolean_factor> ::= "OPEN_PARENTHESIS" <boolean_expression> "CLOSE_PARENTHESIS" | "OP_NEG" <boolean_factor> | <boolean>
+
+<boolean> ::= "TRUE" | "FALSE" | <comparation>
+
+<comparation> ::=  <expression> <compare_operator> <expression>
+
+<expression> ::= "OPEN_PARENTHESIS" <expression> "OP_SUM" <term> "CLOSE_PARENTHESIS" | "OPEN_PARENTHESIS" <expression> "OP_SUB" <term> "CLOSE_PARENTHESIS" | <term> 
+| <expression> "OP_SUM" <term> | <expression> "OP_SUB" <term> | <expression> "OP_MODULO" <term>
+
+<term> ::= "OPEN_PARENTHESIS" <term> "OP_MUL" <factor> "CLOSE_PARENTHESIS" | "OPEN_PARENTHESIS" <term> "OP_DIV" <factor> "CLOSE_PARENTHESIS" | <factor> 
+| <term> "OP_MUL" <factor> | <term> "OP_DIV" <factor> 
+
+<factor> ::= "VAR_NAME" | "INTEGER"
+
+<compare_operator> ::= "OP_LT" | "OP_GT" | "OP_EQ" |"OP_DIST" | "OP_LE" | "OP_GE"
