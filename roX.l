@@ -27,11 +27,11 @@ ELSE sino
 DO metele
 WHILE "siempre que"
 
-OPEN_PARENTHESIS "("
-CLOSE_PARENTHESIS ")"
-
 OPEN_BLOCK "{"
 CLOSE_BLOCK "}"
+
+OPEN_PARENTHESIS "("
+CLOSE_PARENTHESIS ")"
 
 OP_ASSIGN " sos "
 
@@ -116,7 +116,7 @@ END_INSTR ";"
 <<EOF>>					return 0;
 
 {VAR_NAME}				{yylval.string = yytext; return VAR_NAME;}
-.						{fprintf(stderr, "Invalid input.");}
+.						{fprintf(stderr, "Invalid input\n");}
 %%
 
 

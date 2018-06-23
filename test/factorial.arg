@@ -13,7 +13,7 @@ buenas
 		siempre que (i es mas piola que 0){
 			n sos n por i;
 			i sos i menos 1;
-              }
+        }
         	tirame la posta ("El factorial es %d\n", n);
 	}
 ni nos vimo
