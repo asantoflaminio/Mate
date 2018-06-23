@@ -56,7 +56,7 @@ OP_GE " es o es mas piola que "
 OP_MODULO " modulo "
 
 OP_PRINT "tirame la posta"
-OP_IN "entrada"
+OP_IN "leete algo"
 
 END_INSTR ";"
 
