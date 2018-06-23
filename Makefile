@@ -11,21 +11,12 @@ all:
 	@echo "Compilador compilado"
 
 compile:
-	./$(PARSER) < tests/factorial.esp > tests/factorial.c
-	gcc -c -w tests/factorial.c
+	./$(PARSER) < test/factorial.arg > test/factorial.c
+	gcc -c -w test/factorial.c
 	gcc -w factorial.o -o factorial.out	
-	./$(PARSER) < tests/potencia.esp > tests/potencia.c
-	gcc -c -w tests/potencia.c
-	gcc -w potencia.o -o potencia.out	
-	./$(PARSER) < tests/primo.esp > tests/primo.c
-	gcc -c -w tests/primo.c
-	gcc -w primo.o -o primo.out	
-	./$(PARSER) < tests/fibonacci.esp > tests/fibonacci.c
-	gcc -c -w tests/fibonacci.c
-	gcc -w fibonacci.o -o fibonacci.out	
-	./$(PARSER) < tests/mcd.esp > tests/mcd.c
-	gcc -c -w tests/mcd.c
-	gcc -w mcd.o -o mcd.out	
+	./$(PARSER) < test/el_diego.arg > test/el_diego.c
+	gcc -c -w test/el_diego.c
+	gcc -w el_diego.o -o el_diego.out
 	@echo "Tests compilados"
 
 clean: 	
