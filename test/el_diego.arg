@@ -1,36 +1,37 @@
 buenas
 	entero n;
 	entero i;
+	entero jugador2018;
 	n sos 0;
     tirame la posta ("Voy a buscar al mejor de todos\n");
-    siempre que (i es menos piola que el Diego){
-        i aplicar tarifazo;
-        chequeame si (i es 1){
-            tirame la posta ("%d\n", "Guzman");
+    siempre que (jugador2018 es menos piola que el Diego){
+        jugador2018 aplicar tarifazo;
+        chequeame si (jugador2018 es 1){
+            tirame la posta ("%s\n", "Guzman");
         }
-        chequeame si (i es 2){
-            tirame la posta ("%d\n", "Mercado");
+        chequeame si (jugador2018 es 2){
+            tirame la posta ("%s\n", "Mercado");
         }
-        chequeame si (i es 3){
-            tirame la posta ("%d\n", "Tagliafico");
+        chequeame si (jugador2018 es 3){
+            tirame la posta ("%s\n", "Tagliafico");
         }
-        chequeame si (i es 4){
-            tirame la posta ("%d\n", "Ansaldi");
+        chequeame si (jugador2018 es 4){
+            tirame la posta ("%s\n", "Ansaldi");
         }
-        chequeame si (i es 5){
-            tirame la posta ("%d\n", "Biglia");
+        chequeame si (jugador2018 es 5){
+            tirame la posta ("%s\n", "Biglia");
         }
-        chequeame si (i es 6){
-            tirame la posta ("%d\n", "Fazio");
+        chequeame si (jugador2018 es 6){
+            tirame la posta ("%s\n", "Fazio");
         }
-        chequeame si (i es 7){
-            tirame la posta ("%d\n", "Banega");
+        chequeame si (jugador2018 es 7){
+            tirame la posta ("%s\n", "Banega");
         }
-        chequeame si (i es 8){
-            tirame la posta ("%d\n", "Acuña");
+        chequeame si (jugador2018 es 8){
+            tirame la posta ("%s\n", "Acuña");
         }
-        chequeame si (i es 9){
-            tirame la posta ("%d\n", "Higuaín");
+        chequeame si (jugador2018 es 9){
+            tirame la posta ("%s\n", "Higuaín");
         }
     }
     tirame la posta ("Encontre al mejor de todos\n");

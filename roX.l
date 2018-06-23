@@ -20,7 +20,7 @@ FALSE chamuyo
 INT_VAR entero
 DIEGO "el Diego"
 STRING_VAR frase
-VAR_NAME [a-zA-Z]+
+VAR_NAME [A-Za-z][0-9A-Za-z_]*
 
 IF "chequeame si"
 ELSE sino
