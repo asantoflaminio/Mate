@@ -14,17 +14,18 @@ STRING ["][^\n\r]*["]
 COMA ","
 AMPERSAND "&"
 INTEGER [-]?[0-9]+
-TRUE la posta
+TRUE "la posta"
 FALSE chamuyo
 
 INT_VAR entero
+DIEGO "el Diego"
 STRING_VAR frase
 VAR_NAME [a-zA-Z]+
 
-IF chequeame si
+IF "chequeame si"
 ELSE sino
 DO metele
-WHILE siempre que
+WHILE "siempre que"
 
 OPEN_PARENTHESIS "("
 CLOSE_PARENTHESIS ")"
@@ -69,6 +70,7 @@ END_INSTR ";"
 {FALSE}					return FALSE;
 
 {INT_VAR}				return INT_VAR;
+{DIEGO}				    return DIEGO;
 {STRING_VAR}			return STRING_VAR;
 
 {IF}					return IF;
