@@ -7,57 +7,57 @@
 
 ENTER ^"\n"
 
-START "hola"
+START "buenas"
 END_PROG "ni nos vimo"
 
 STRING ["][^\n\r]*["] 
 COMA ","
 AMPERSAND "&"
 INTEGER [-]?[0-9]+
-TRUE verdadero
-FALSE falso
+TRUE la posta
+FALSE chamuyo
 
 INT_VAR entero
-STRING_VAR cadena
+STRING_VAR frase
 VAR_NAME [a-zA-Z]+
 
-IF si
+IF chequeame si
 ELSE sino
-DO hacer
-WHILE mientras
+DO metele
+WHILE siempre que
 
-OPEN_PARENTHESIS "¿"
-CLOSE_PARENTHESIS "?"
+OPEN_PARENTHESIS "("
+CLOSE_PARENTHESIS ")"
 
-OPEN_BLOCK "<"
-CLOSE_BLOCK ">"
+OPEN_BLOCK "{"
+CLOSE_BLOCK "}"
 
-OP_ASSIGN " vale "
+OP_ASSIGN " sos "
 
 OP_SUM " mas "
 OP_SUB " menos "
 OP_DIV " dividido "
-OP_MUL " multiplicado "
+OP_MUL " por "
 
-OP_PLUS_ONE "aumentar"
-OP_SUB_ONE "decrementar"
+OP_PLUS_ONE "aplicar tarifazo"
+OP_SUB_ONE "devaluar"
 
 OP_OR " o "
 OP_AND " y " 
-OP_NEG " no "
+OP_NEG " ni ahi "
 
-OP_LT " menor "
-OP_GT " mayor "
-OP_EQ " igual "
-OP_DIST " distinto "
-OP_LE " menor igual "
-OP_GE " mayor igual "
+OP_LT " es menos piola que "
+OP_GT " es mas piola que "
+OP_EQ " es "
+OP_DIST " nada que ver con "
+OP_LE " es o es menos piola que "
+OP_GE " es o es mas piola que "
 OP_MODULO " modulo "
 
-OP_PRINT "imprime"
+OP_PRINT "tirame la posta"
 OP_IN "entrada"
 
-END_INSTR "."
+END_INSTR ";"
 
 
 %%
