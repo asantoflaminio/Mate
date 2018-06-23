@@ -215,7 +215,8 @@ term: open_parenthesis term op_mul factor close_parenthesis
 			| term factor 
 			| factor
 			| term op_mul factor 
-			| term op_div factor;
+			| term op_div factor
+            | el_diego;
 
 factor: var_name | integer;
 
