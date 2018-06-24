@@ -60,9 +60,16 @@ END_INSTR ";"
 
 
 %%
-{INTEGER}				{yylval.number = atoi(yytext); return INTEGER;}
-{STRING}				{yylval.string = yytext; return STRING;}
-{COMA}                                  return COMA;
+
+{INTEGER}				{ yylval.number = atoi(yytext); 
+						  return INTEGER;
+						}
+
+{STRING}				{ yylval.string = yytext; 
+						  return STRING;
+						}
+
+{COMA}                  return COMA;
 {AMPERSAND}				return AMPERSAND;
 {TRUE}					return TRUE;
 {FALSE}					return FALSE;
@@ -85,7 +92,7 @@ END_INSTR ";"
 {OP_SUM}				return OP_SUM;
 {OP_SUB}				return OP_SUB;
 {OP_MUL}				return OP_MUL;
-{OP_MODULO}                             return OP_MODULO;
+{OP_MODULO}             return OP_MODULO;
 
 {OP_PLUS_ONE}			return OP_PLUS_ONE;
 {OP_SUB_ONE}			return OP_SUB_ONE;
@@ -108,12 +115,12 @@ END_INSTR ";"
 
 {END_INSTR}				return END_INSTR;
 
-[\t ]					ECHO;
+[ \t\r\n]				ECHO;
 
 <<EOF>>					return 0;
 
 {VAR_NAME}				{yylval.string = yytext; return VAR_NAME;}
-.						;
+.						{fprintf(stderr, "Invalid input.");}
 
 %%
 

@@ -50,7 +50,6 @@ int yylex();
 %token OP_IN;
 %token START;
 %token END_PROG;
-%token ENTER;
 %token END_INSTR;
 %token COMA;
 %token AMPERSAND;
@@ -68,8 +67,7 @@ end_prog: END_PROG{
 	printf("}");
 }
 
-code : instruction code | control_sequence code | /*empty*/ {
-};
+code : instruction code | control_sequence code | /*empty*/;
 
 instruction : declaration assign end_instr 
 | declaration assign_string end_instr
@@ -307,4 +305,10 @@ int yywrap(){
 
 int main (){
 	yyparse();
+}
+
+void
+yyerror (char const *s)
+{
+  fprintf (stderr, "%s\n", s);
 }

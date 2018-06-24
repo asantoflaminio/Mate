@@ -5,15 +5,15 @@ buenas
 	n sos 0;
     tirame la posta ("Voy a buscar al mejor de todos\n");
     siempre que (jugador2018 es menos piola que el Diego){
-        jugador2018 aplicar tarifazo;
-        chequeame si (jugador2018 es 1){
-            tirame la posta ("%s\n", "Guzman");
+    	jugador2018 aplicar tarifazo;
+    	chequeame si (jugador2018 es 1){
+        	tirame la posta ("%s\n", "Guzman");
         }
-        chequeame si (jugador2018 es 2){
-            tirame la posta ("%s\n", "Mercado");
+    	chequeame si (jugador2018 es 2){
+        	tirame la posta ("%s\n", "Mercado");
         }
-        chequeame si (jugador2018 es 3){
-            tirame la posta ("%s\n", "Tagliafico");
+    	chequeame si (jugador2018 es 3){
+        	tirame la posta ("%s\n", "Tagliafico");
         }
         chequeame si (jugador2018 es 4){
             tirame la posta ("%s\n", "Ansaldi");
