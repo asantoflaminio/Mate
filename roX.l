@@ -5,8 +5,6 @@
 %}
 
 
-ENTER ^"\n"
-
 START "buenas"
 END_PROG "ni nos vimo"
 
@@ -108,15 +106,15 @@ END_INSTR ";"
 {START}					return START;
 {END_PROG}				return END_PROG;
 
-{ENTER}					return ENTER;
 {END_INSTR}				return END_INSTR;
 
-[ \t]					ECHO;
+[\t ]					ECHO;
 
 <<EOF>>					return 0;
 
 {VAR_NAME}				{yylval.string = yytext; return VAR_NAME;}
-.						{fprintf(stderr, "Invalid input\n");}
+.						;
+
 %%
 
 

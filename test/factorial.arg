@@ -1,4 +1,4 @@
-buenas
+buenas 
 	entero n;
 	entero i;
 	tirame la posta ("Que factorial desea calcular?: ");
