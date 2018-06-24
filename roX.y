@@ -116,6 +116,7 @@ ampersand: AMPERSAND{
 control_sequence : if_block | loop;
 
 if_block : if open_parenthesis boolean_expression close_parenthesis open_block code close_block 
+| if open_parenthesis boolean_expression close_parenthesis open_block code close_block else if_block
 | if open_parenthesis boolean_expression close_parenthesis open_block code close_block else open_block code close_block;
 
 if : IF {
