@@ -6,25 +6,24 @@ buenas
     tirame la posta("Elegí un operador (+, -, *, /): ");
     leete algo("%s", &operador);
 
-    tirame la posta("Escribí dos números: ");
-    leete algo("%d %d",&primerNumero, &segundoNumero);
+    tirame la posta("Escribí dos números: \n");
+    tirame la posta("Escribí el primer número: ");
+    leete algo("%d" ,&primerNumero);
+    tirame la posta("Escribí el segundo número: ");
+    leete algo("%d",&segundoNumero);
 
     depende de lo que venga en(operador)
     {
         si es un '+':
-            tirame la posta("%d" , primerNumero );
+            tirame la posta("%d + %d = %d" , primerNumero, segundoNumero, primerNumero mas segundoNumero);
             basta chicos;
 
         si es un '-':
-            tirame la posta("%d" , primerNumero );
+            tirame la posta("%d - %d = %d" , primerNumero, segundoNumero, primerNumero menos segundoNumero);
             basta chicos;
 
         si es un '*':
-            tirame la posta("%d" , primerNumero );
-            basta chicos;
-
-        si es un '/':
-            tirame la posta("%d" , primerNumero );
+            tirame la posta("%d * %d = %d" , primerNumero, segundoNumero, primerNumero por segundoNumero);
             basta chicos;
 
         si no queda otra:

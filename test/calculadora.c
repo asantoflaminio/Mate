@@ -6,25 +6,24 @@ int main(){
     printf("Elegí un operador (+, -, *, /): ");
     scanf("%s", &operador);
 
-    printf("Escribí dos números: ");
-    scanf("%d %d",&primerNumero, &segundoNumero);
+    printf("Escribí dos números: \n");
+    printf("Escribí el primer número: ");
+    scanf("%d" ,&primerNumero);
+    printf("Escribí el segundo número: ");
+    scanf("%d",&segundoNumero);
 
     switch(operador)
     {
         case '+':
-            printf("%d" , primerNumero );
+            printf("%d + %d = %d" , primerNumero, segundoNumero, primerNumero+segundoNumero);
             break;
 
         case '-':
-            printf("%d" , primerNumero );
+            printf("%d - %d = %d" , primerNumero, segundoNumero, primerNumero-segundoNumero);
             break;
 
         case '*':
-            printf("%d" , primerNumero );
-            break;
-
-        case '/':
-            printf("%d" , primerNumero );
+            printf("%d * %d = %d" , primerNumero, segundoNumero, primerNumero*segundoNumero);
             break;
 
         default:

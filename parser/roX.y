@@ -108,10 +108,16 @@ char_var : CHAR_VAR{
 	printf("char");
 }
 
-print: op_print open_parenthesis string comma string close_parenthesis
-| op_print open_parenthesis string comma var_name close_parenthesis
-| op_print open_parenthesis string comma integer close_parenthesis
-| op_print open_parenthesis string close_parenthesis
+print: op_print open_parenthesis string cerrar_print | op_print open_parenthesis string close_parenthesis;
+
+cerrar_print: comma string close_parenthesis
+| comma var_name close_parenthesis
+| comma integer close_parenthesis
+| comma expression close_parenthesis
+| comma string cerrar_print
+| comma var_name cerrar_print
+| comma integer cerrar_print
+| comma expression cerrar_print
 ;
 
 in: op_in open_parenthesis string cerrar_in; 
