@@ -104,7 +104,9 @@ print: op_print open_parenthesis string coma string close_parenthesis
 | op_print open_parenthesis string close_parenthesis
 ;
 
-in: op_in open_parenthesis string coma ampersand var_name close_parenthesis; 
+in: op_in open_parenthesis string cerrar_in; 
+
+cerrar_in: coma ampersand var_name close_parenthesis | coma ampersand var_name cerrar_in;
 
 coma : COMA {
 	printf(",");     
