@@ -17,8 +17,10 @@ compile:
 	./$(PARSER) < test/el_diego.arg > test/el_diego.c
 	gcc -c -w test/el_diego.c
 	gcc -w el_diego.o -o el_diego.out
+	./$(PARSER) < test/cual_sos.arg > test/cual_sos.c
+	gcc -c -w test/cual_sos.c
+	gcc -w cual_sos.o -o cual_sos.out
 	@echo "Tests compilados"
 
 clean: 	
-	rm -f *.out *.o $(PARSER) lex.yy.c y.tab.c y.tab.h test/factorial.c test/el_diego.c out.c
-
+	rm -f *.out *.o $(PARSER) lex.yy.c y.tab.c y.tab.h test/factorial.c test/el_diego.c test/cual_sos.c out.c
