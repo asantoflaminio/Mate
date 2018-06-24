@@ -10,6 +10,7 @@ END_PROG "ni nos vimo"
 
 STRING ["][^\n\r]*["]
 CHARACTER ['][^\n\r0-9]['] 
+CHAR [^\n\r]
 COMMA ","
 COLON ":"
 AMPERSAND "&"
@@ -20,6 +21,7 @@ FALSE chamuyo
 INT_VAR entero
 DIEGO "el Diego"
 STRING_VAR frase
+CHAR_VAR char 
 VAR_NAME [A-Za-z][0-9A-Za-z_]*
 
 IF "chequeame si"
@@ -75,7 +77,11 @@ END_INSTR ";"
 
 {STRING}				{ yylval.string = yytext; 
 						  return STRING;
-						}												
+						}
+
+{CHARACTER}				{ yylval.string = yytext; 
+						  return CHARACTER;
+						}																		
 
 {COMMA}                 return COMMA;
 {COLON}					return COLON;
@@ -88,6 +94,7 @@ END_INSTR ";"
 {INT_VAR}				return INT_VAR;
 {DIEGO}				    return DIEGO;
 {STRING_VAR}			return STRING_VAR;
+{CHAR_VAR}				return CHAR_VAR;
 
 {IF}					return IF;
 {ELSE}					return ELSE;
@@ -139,7 +146,7 @@ END_INSTR ";"
 
 {VAR_NAME}				{ yylval.string = yytext; return VAR_NAME;}
 
-{CHARACTER}				{ yylval.string = yytext; 
+{CHAR}					{ yylval.string = yytext; 
 						  return CHARACTER;
 						}
 

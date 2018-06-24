@@ -1,5 +1,5 @@
 int main(){
-    char * operador;
+    char operador;
     int primerNumero;
     int segundoNumero;
 
@@ -20,7 +20,7 @@ int main(){
             break;
 
         case '*':
-         printf("%d" , primerNumero );
+            printf("%d" , primerNumero );
             break;
 
         case '/':

@@ -11,16 +11,18 @@ int yylex();
 {
         int number;
         char *string;
+        char character;
 }
 
 %token <number> INTEGER;
 %token <string> STRING;
-%token <string> CHARACTER
+%token <string> CHARACTER;
 %token TRUE;
 %token FALSE;
 %token INT_VAR;
 %token DIEGO;
 %token STRING_VAR;
+%token CHAR_VAR;
 %token <string> VAR_NAME;
 %token IF;					
 %token ELSE;
@@ -88,8 +90,7 @@ instruction : declaration assign end_instr
 
 declaration: type var_name;
 
-type: int_var
-|string_var;
+type: int_var | string_var | char_var;
 
 int_var: INT_VAR{
 	printf("int");
@@ -99,9 +100,12 @@ el_diego: DIEGO{
 	printf("10");
 }; 
 
-
 string_var: STRING_VAR{
 	printf("char *");
+}
+
+char_var : CHAR_VAR{
+	printf("char");
 }
 
 print: op_print open_parenthesis string comma string close_parenthesis

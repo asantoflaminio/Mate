@@ -1,5 +1,5 @@
 buenas
-    frase operador;
+    char operador;
     entero primerNumero;
     entero segundoNumero;
 
@@ -20,7 +20,7 @@ buenas
             basta chicos;
 
         si es un '*':
-         tirame la posta("%d" , primerNumero );
+            tirame la posta("%d" , primerNumero );
             basta chicos;
 
         si es un '/':
