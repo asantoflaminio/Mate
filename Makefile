@@ -1,5 +1,5 @@
-SCANNER_RULES=roX.l
-GRAMMAR=roX.y
+SCANNER_RULES=scanner/roX.l
+GRAMMAR=parser/roX.y
 PARSER=parser.out
 
 .PHONY: clean		

@@ -8,10 +8,10 @@ buenas
     {
       tirame la posta("Es 1");
     }
-    o chequeame si(n es 2) {
+    sino chequeame si(n es 2) {
       tirame la posta("Es 2");
     }
-    o chequeame si(n es 3) {
+    sino chequeame si(n es 3) {
       tirame la posta("Es 3");
     }
     sino {
