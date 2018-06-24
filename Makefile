@@ -20,6 +20,12 @@ compile:
 	./$(PARSER) < test/cual_sos.arg > test/cual_sos.c
 	gcc -c -w test/cual_sos.c
 	gcc -w cual_sos.o -o cual_sos.out
+	./$(PARSER) < test/for_test.arg > test/for_test.c
+	gcc -c -w test/for_test.c
+	gcc -w for_test.o -o for_test.out
+	./$(PARSER) < test/calculadora.arg > test/calculadora.c
+	gcc -c -w test/calculadora.c
+	gcc -w calculadora.o -o calculadora.out
 	@echo "Tests compilados"
 
 clean: 	

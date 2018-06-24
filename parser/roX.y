@@ -15,6 +15,7 @@ int yylex();
 
 %token <number> INTEGER;
 %token <string> STRING;
+%token <string> CHARACTER
 %token TRUE;
 %token FALSE;
 %token INT_VAR;
@@ -24,8 +25,12 @@ int yylex();
 %token IF;					
 %token ELSE;
 %token DO; 					
-%token WHILE; 	
+%token WHILE; 
 %token FOR;
+%token SWITCH;
+%token CASE;
+%token DEFAULT;
+%token BREAK;				
 %token OPEN_PARENTHESIS;
 %token CLOSE_PARENTHESIS;
 %token OPEN_BLOCK;
@@ -52,7 +57,8 @@ int yylex();
 %token START;
 %token END_PROG;
 %token END_INSTR;
-%token COMA;
+%token COMMA;
+%token COLON;
 %token AMPERSAND;
 
 %start comienza
@@ -98,17 +104,17 @@ string_var: STRING_VAR{
 	printf("char *");
 }
 
-print: op_print open_parenthesis string coma string close_parenthesis
-| op_print open_parenthesis string coma var_name close_parenthesis
-| op_print open_parenthesis string coma integer close_parenthesis
+print: op_print open_parenthesis string comma string close_parenthesis
+| op_print open_parenthesis string comma var_name close_parenthesis
+| op_print open_parenthesis string comma integer close_parenthesis
 | op_print open_parenthesis string close_parenthesis
 ;
 
 in: op_in open_parenthesis string cerrar_in; 
 
-cerrar_in: coma ampersand var_name close_parenthesis | coma ampersand var_name cerrar_in;
+cerrar_in: comma ampersand var_name close_parenthesis | comma ampersand var_name cerrar_in;
 
-coma : COMA {
+comma : COMMA {
 	printf(",");     
 };
 
@@ -116,7 +122,7 @@ ampersand: AMPERSAND{
 	printf("&");
 }
 
-control_sequence : if_block | loop;
+control_sequence : if_block | loop | switch_block;
 
 if_block : if open_parenthesis boolean_expression close_parenthesis open_block code close_block 
 | if open_parenthesis boolean_expression close_parenthesis open_block code close_block else if_block
@@ -155,6 +161,34 @@ for : FOR {
 	printf("for");
 };
 
+
+switch_block : switch open_parenthesis var_name close_parenthesis open_block inside_switch close_block;
+
+inside_switch : case character colon code break end_instr default_switch | case character colon code break end_instr inside_switch;
+
+default_switch : default colon code;
+
+switch : SWITCH {
+	printf("switch");	
+};
+
+case : CASE {
+	printf("case");	
+};
+
+colon : COLON {
+	printf(":");     
+};
+
+default : DEFAULT {
+	printf("default");	
+};
+
+break : BREAK {
+	printf("break");
+};
+
+
 op_print: OP_PRINT {
 	printf("printf");
 };
@@ -177,6 +211,10 @@ var_name : VAR_NAME {
 
 string: STRING{
 	printf("%s",$1); 
+};
+
+character : CHARACTER{
+	printf("%s", $1);
 };
 
 assign: op_assign expression;

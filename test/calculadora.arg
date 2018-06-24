@@ -1,0 +1,33 @@
+buenas
+    frase operador;
+    entero primerNumero;
+    entero segundoNumero;
+
+    tirame la posta("Elegí un operador (+, -, *, /): ");
+    leete algo("%s", &operador);
+
+    tirame la posta("Escribí dos números: ");
+    leete algo("%d %d",&primerNumero, &segundoNumero);
+
+    depende de lo que venga en(operador)
+    {
+        si es un '+':
+            tirame la posta("%d" , primerNumero );
+            basta chicos;
+
+        si es un '-':
+            tirame la posta("%d" , primerNumero );
+            basta chicos;
+
+        si es un '*':
+         tirame la posta("%d" , primerNumero );
+            basta chicos;
+
+        si es un '/':
+            tirame la posta("%d" , primerNumero );
+            basta chicos;
+
+        si no queda otra:
+            tirame la posta("Le pifiaste al operador hermano!");
+    }
+ni nos vimo

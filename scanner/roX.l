@@ -8,8 +8,10 @@
 START "buenas"
 END_PROG "ni nos vimo"
 
-STRING ["][^\n\r]*["] 
-COMA ","
+STRING ["][^\n\r]*["]
+CHARACTER ['][^\n\r0-9]['] 
+COMMA ","
+COLON ":"
 AMPERSAND "&"
 INTEGER [-]?[0-9]+
 TRUE "la posta"
@@ -25,6 +27,11 @@ ELSE sino
 DO metele
 WHILE "siempre que"
 FOR "vengan de a uno empezando por"
+
+SWITCH "depende de lo que venga en"
+CASE "si es un"
+DEFAULT "si no queda otra"
+BREAK "basta chicos"
 
 OPEN_BLOCK "{"
 CLOSE_BLOCK "}"
@@ -68,10 +75,13 @@ END_INSTR ";"
 
 {STRING}				{ yylval.string = yytext; 
 						  return STRING;
-						}
+						}												
 
-{COMA}                  return COMA;
+{COMMA}                 return COMMA;
+{COLON}					return COLON;
 {AMPERSAND}				return AMPERSAND;
+
+
 {TRUE}					return TRUE;
 {FALSE}					return FALSE;
 
@@ -84,6 +94,11 @@ END_INSTR ";"
 {DO}					return DO;
 {WHILE}					return WHILE;
 {FOR}					return FOR;
+
+{SWITCH}				return SWITCH;
+{CASE}					return CASE;
+{DEFAULT}				return DEFAULT;
+{BREAK}					return BREAK;
 
 {OPEN_PARENTHESIS}		return OPEN_PARENTHESIS;
 {CLOSE_PARENTHESIS}		return CLOSE_PARENTHESIS;
@@ -118,11 +133,16 @@ END_INSTR ";"
 {END_INSTR}				return END_INSTR;
 
 [ \t\r\n]				ECHO;
+	
 
 <<EOF>>					return 0;
 
-{VAR_NAME}				{yylval.string = yytext; return VAR_NAME;}
-.						{fprintf(stderr, "Invalid input.");}
+{VAR_NAME}				{ yylval.string = yytext; return VAR_NAME;}
+
+{CHARACTER}				{ yylval.string = yytext; 
+						  return CHARACTER;
+						}
+
 
 %%
 
