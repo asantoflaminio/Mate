@@ -24,7 +24,8 @@ int yylex();
 %token IF;					
 %token ELSE;
 %token DO; 					
-%token WHILE; 				
+%token WHILE; 	
+%token FOR;
 %token OPEN_PARENTHESIS;
 %token CLOSE_PARENTHESIS;
 %token OPEN_BLOCK;
@@ -136,7 +137,9 @@ else : ELSE {
 };
 
 loop : do open_block code close_block while open_parenthesis boolean_expression close_parenthesis 
-| while open_parenthesis boolean_expression close_parenthesis open_block code close_block;
+| while open_parenthesis boolean_expression close_parenthesis open_block code close_block
+| for open_parenthesis instruction boolean_expression end_instr var_name op_plus_one close_parenthesis open_block code close_block
+| for open_parenthesis instruction boolean_expression end_instr var_name op_sub_one close_parenthesis open_block code close_block;
 
 do : DO {
 	printf("do");
@@ -144,6 +147,10 @@ do : DO {
 
 while : WHILE {
 	printf("while");
+};
+
+for : FOR {
+	printf("for");
 };
 
 op_print: OP_PRINT {

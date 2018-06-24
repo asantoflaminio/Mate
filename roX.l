@@ -24,6 +24,7 @@ IF "chequeame si"
 ELSE sino
 DO metele
 WHILE "siempre que"
+FOR "vengan de a uno empezando por"
 
 OPEN_BLOCK "{"
 CLOSE_BLOCK "}"
@@ -82,6 +83,7 @@ END_INSTR ";"
 {ELSE}					return ELSE;
 {DO}					return DO;
 {WHILE}					return WHILE;
+{FOR}					return FOR;
 
 {OPEN_PARENTHESIS}		return OPEN_PARENTHESIS;
 {CLOSE_PARENTHESIS}		return CLOSE_PARENTHESIS;
