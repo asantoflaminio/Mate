@@ -1,0 +1,25 @@
+buenas
+    con coma n;
+
+    tirame la posta("Escribi­ un numero de 1 a 4: ");
+    leete algo("%f", &n);
+
+    tirame la posta("%f", &n);
+
+    chequeame si(n es 1.5)
+    {
+      tirame la posta("Es 1.5");
+    }
+    sino chequeame si(n es 2.7) 
+    {
+      tirame la posta("Es 2.7");
+    }
+    sino chequeame si(n es 3) 
+    {
+      tirame la posta("Es 3");
+    }
+    sino 
+    {
+      tirame la posta("Es 4");
+    }
+ni nos vimo
