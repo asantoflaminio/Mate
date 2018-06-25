@@ -24,6 +24,9 @@ FLOAT_VAR "con coma"
 ARRAY_INT_VAR "mix de numeros"
 ARRAY_STR_VAR "mix de frases"
 DIEGO "el Diego"
+UNA_GAMBA "una gamba"
+UNA_LUCA "una luca"
+UN_PALO "un palo"
 STRING_VAR frase
 CHAR_VAR char 
 VAR_NAME [A-Za-z][0-9A-Za-z_]*
@@ -104,6 +107,9 @@ END_INSTR ";"
 {ARRAY_INT_VAR}			return ARRAY_INT_VAR;
 {ARRAY_STR_VAR}			return ARRAY_STR_VAR;
 {DIEGO}				    return DIEGO;
+{UNA_GAMBA}				return UNA_GAMBA;
+{UNA_LUCA}				return UNA_LUCA;
+{UN_PALO}				return UN_PALO;
 {STRING_VAR}			return STRING_VAR;
 {CHAR_VAR}				return CHAR_VAR;
 

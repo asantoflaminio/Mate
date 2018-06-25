@@ -29,6 +29,9 @@ int yylex();
 %token STRING_VAR;
 %token CHAR_VAR;
 %token DIEGO;
+%token UNA_GAMBA;
+%token UNA_LUCA;
+%token UN_PALO;
 %token IF;					
 %token ELSE;
 %token DO; 					
@@ -128,6 +131,18 @@ int_var : INT_VAR{
 
 el_diego : DIEGO{
 	printf("10");
+}; 
+
+una_gamba : UNA_GAMBA{
+	printf("100");
+}; 
+
+una_luca : UNA_LUCA{
+	printf("1000");
+}; 
+
+un_palo : UN_PALO{
+	printf("1000000");
 }; 
 
 string_var : STRING_VAR{
@@ -317,7 +332,10 @@ term : open_parenthesis term multiply factor close_parenthesis
 	 | factor
 	 | term multiply factor 
 	 | term div factor
-	 | el_diego;
+	 | el_diego
+	 | una_gamba
+	 | una_luca
+	 | un_palo;
 
 factor : var_name 
 	   | integer 
