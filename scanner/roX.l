@@ -77,7 +77,7 @@ END_INSTR ";"
 						  return INTEGER;
 						}
 						
-{FLOAT}					{ yylval.floatValue = new atof(yytext);
+{FLOAT}					{ yylval.floatValue = atof(yytext);
 						 return FLOAT;
 						}
 
