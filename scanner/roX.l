@@ -99,6 +99,7 @@ END_INSTR ";"
 {FALSE}					return FALSE;
 
 {INT_VAR}				return INT_VAR;
+{FLOAT_VAR}				return FLOAT_VAR;
 {DIEGO}				    return DIEGO;
 {STRING_VAR}			return STRING_VAR;
 {CHAR_VAR}				return CHAR_VAR;
