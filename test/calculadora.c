@@ -1,32 +1,32 @@
 int main(){
     char operador;
-    int primerNumero;
-    int segundoNumero;
+    float primerNumero;
+    float segundoNumero;
     int salir;
 
     do {
 
-        printf("Elegí un operador (+, -, *, /, %): ");
+        printf("Elegí un operador (+, -, *, /): ");
         scanf("%s", &operador);
 
         printf("Escribí dos números: \n");
         printf("Escribí el primer número: ");
-        scanf("%d" ,&primerNumero);
+        scanf("%f" ,&primerNumero);
         printf("Escribí el segundo número: ");
-        scanf("%d",&segundoNumero);
+        scanf("%f",&segundoNumero);
 
         switch(operador)
         {
             case '+':
-                printf("%d + %d = %d\n" , primerNumero, segundoNumero, primerNumero+segundoNumero);
+                printf("%f + %f = %f\n" , primerNumero, segundoNumero, primerNumero+segundoNumero);
                 break;
 
             case '-':
-                printf("%d - %d = %d\n" , primerNumero, segundoNumero, primerNumero-segundoNumero);
+                printf("%f - %f = %f\n" , primerNumero, segundoNumero, primerNumero-segundoNumero);
                 break;
 
             case '*':
-                printf("%d * %d = %d\n" , primerNumero, segundoNumero, primerNumero*segundoNumero);
+                printf("%f * %f = %f\n" , primerNumero, segundoNumero, primerNumero*segundoNumero);
                 break;
 
             case '/':
@@ -34,12 +34,8 @@ int main(){
                     printf ("El segundo numero ingresado fue cero y NO SE PUEDE DIVIDIR POR CERO!!!!!!\n");
                 }
                 else {
-                    printf("%d / %d = %d\n" , primerNumero, segundoNumero, primerNumero/segundoNumero);
+                    printf("%f / %f = %f\n" , primerNumero, segundoNumero, primerNumero/segundoNumero);
                 }
-                break;
-
-            case '%':
-                printf("%d % %d = %d\n" , primerNumero, segundoNumero, primerNumero%segundoNumero);
                 break;
 
             default:

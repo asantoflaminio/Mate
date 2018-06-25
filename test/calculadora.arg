@@ -1,32 +1,32 @@
 buenas
     char operador;
-    entero primerNumero;
-    entero segundoNumero;
+    con coma primerNumero;
+    con coma segundoNumero;
     entero salir;
 
     metele {
 
-        tirame la posta("Elegí un operador (+, -, *, /, %): ");
+        tirame la posta("Elegí un operador (+, -, *, /): ");
         leete algo("%s", &operador);
 
         tirame la posta("Escribí dos números: \n");
         tirame la posta("Escribí el primer número: ");
-        leete algo("%d" ,&primerNumero);
+        leete algo("%f" ,&primerNumero);
         tirame la posta("Escribí el segundo número: ");
-        leete algo("%d",&segundoNumero);
+        leete algo("%f",&segundoNumero);
 
         depende de lo que venga en(operador)
         {
             si es un '+':
-                tirame la posta("%d + %d = %d\n" , primerNumero, segundoNumero, primerNumero mas segundoNumero);
+                tirame la posta("%f + %f = %f\n" , primerNumero, segundoNumero, primerNumero mas segundoNumero);
                 basta chicos;
 
             si es un '-':
-                tirame la posta("%d - %d = %d\n" , primerNumero, segundoNumero, primerNumero menos segundoNumero);
+                tirame la posta("%f - %f = %f\n" , primerNumero, segundoNumero, primerNumero menos segundoNumero);
                 basta chicos;
 
             si es un '*':
-                tirame la posta("%d * %d = %d\n" , primerNumero, segundoNumero, primerNumero por segundoNumero);
+                tirame la posta("%f * %f = %f\n" , primerNumero, segundoNumero, primerNumero por segundoNumero);
                 basta chicos;
 
             si es un '/':
@@ -34,12 +34,8 @@ buenas
                     tirame la posta ("El segundo numero ingresado fue cero y NO SE PUEDE DIVIDIR POR CERO!!!!!!\n");
                 }
                 sino {
-                    tirame la posta("%d / %d = %d\n" , primerNumero, segundoNumero, primerNumero dividido segundoNumero);
+                    tirame la posta("%f / %f = %f\n" , primerNumero, segundoNumero, primerNumero dividido segundoNumero);
                 }
-                basta chicos;
-
-            si es un '%':
-                tirame la posta("%d % %d = %d\n" , primerNumero, segundoNumero, primerNumero modulo segundoNumero);
                 basta chicos;
 
             si no queda otra:
