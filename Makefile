@@ -1,14 +1,16 @@
-SCANNER_RULES=scanner/roX.l
-GRAMMAR=parser/roX.y
+SCANNER=scanner/mate.l
+GRAMMAR=parser/mate.y
 PARSER=parser.out
 
 .PHONY: clean		
 
 all: 
 	yacc -d $(GRAMMAR)
-	lex $(SCANNER_RULES)
+	@echo " -- Parser compilado -- "
+	lex $(SCANNER)
+	@echo " -- Scanner compilado -- "
 	gcc -o $(PARSER) lex.yy.c y.tab.c -ly
-	@echo "Compilador compilado"
+	@echo " -- Compilador compilado -- "
 
 compile:
 	./$(PARSER) < test/factorial.arg > test/factorial.c
@@ -29,7 +31,10 @@ compile:
 	./$(PARSER) < test/calculadora.arg > test/calculadora.c
 	gcc -c -w test/calculadora.c
 	gcc -w calculadora.o -o calculadora.out
-	@echo "Tests compilados"
+	./$(PARSER) < test/array.arg > test/array.c
+	gcc -c -w test/array.c
+	gcc -w array.o -o array.out
+	@echo " -- Tests compilados -- "
 
 clean: 	
-	rm -f *.out *.o $(PARSER) lex.yy.c y.tab.c y.tab.h test/factorial.c test/el_diego.c test/for_test.c test/cual_sos.c test/calculadora.c test/cual_float_sos.c out.c
+	rm -f *.out *.o $(PARSER) lex.yy.c y.tab.c y.tab.h test/factorial.c test/el_diego.c test/for_test.c test/cual_sos.c test/calculadora.c test/cual_float_sos.c test/array.c out.c

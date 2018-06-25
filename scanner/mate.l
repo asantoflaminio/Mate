@@ -70,7 +70,7 @@ LOWEREQUAL " es o es menos piola que "
 GREATEREQUAL " es o es mas piola que "
 MODULO " modulo "
 
-PRINT "tirame la posta"
+PRINTF "tirame la posta"
 SCAN "leete algo"
 
 END_INSTR ";"
@@ -83,7 +83,7 @@ END_INSTR ";"
 						}
 						
 {FLOAT}					{ yylval.floatValue = atof(yytext);
-						 return FLOAT;
+						  return FLOAT;
 						}
 
 
@@ -94,11 +94,6 @@ END_INSTR ";"
 {CHARACTER}				{ yylval.string = yytext; 
 						  return CHARACTER;
 						}																		
-
-{COMMA}                 return COMMA;
-{COLON}					return COLON;
-{AMPERSAND}				return AMPERSAND;
-
 
 {TRUE}					return TRUE;
 {FALSE}					return FALSE;
@@ -127,9 +122,12 @@ END_INSTR ";"
 {CLOSE_PARENTHESIS}		return CLOSE_PARENTHESIS;
 {OPEN_BRACKET} 			return OPEN_BRACKET;
 {CLOSE_BRACKET} 		return CLOSE_BRACKET;
-{SQ_BRACKETS}				return SQ_BRACKETS;
-{OPEN_SQ_BRACKET}			return OPEN_SQ_BRACKET;
-{CLOSE_SQ_BRACKET}			return CLOSE_SQ_BRACKET;
+{SQ_BRACKETS}			return SQ_BRACKETS;
+{OPEN_SQ_BRACKET}		return OPEN_SQ_BRACKET;
+{CLOSE_SQ_BRACKET}		return CLOSE_SQ_BRACKET;
+{COMMA}                 return COMMA;
+{COLON}					return COLON;
+{AMPERSAND}				return AMPERSAND;
 
 {ADD}				    return ADD;
 {SUB}				    return SUB;
@@ -150,7 +148,7 @@ END_INSTR ";"
 {GREATEREQUAL}			return GREATEREQUAL;
 {EQUAL}					return EQUAL;
 {DIST}				    return DIST;
-{PRINT}				    return PRINT;
+{PRINTF}				return PRINTF;
 {SCAN}					return SCAN;
 
 {START}					return START;
