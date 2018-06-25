@@ -2,31 +2,52 @@ buenas
     char operador;
     entero primerNumero;
     entero segundoNumero;
+    entero salir;
 
-    tirame la posta("Elegí un operador (+, -, *, /): ");
-    leete algo("%s", &operador);
+    metele {
 
-    tirame la posta("Escribí dos números: \n");
-    tirame la posta("Escribí el primer número: ");
-    leete algo("%d" ,&primerNumero);
-    tirame la posta("Escribí el segundo número: ");
-    leete algo("%d",&segundoNumero);
+        tirame la posta("Elegí un operador (+, -, *, /, %): ");
+        leete algo("%s", &operador);
 
-    depende de lo que venga en(operador)
-    {
-        si es un '+':
-            tirame la posta("%d + %d = %d" , primerNumero, segundoNumero, primerNumero mas segundoNumero);
-            basta chicos;
+        tirame la posta("Escribí dos números: \n");
+        tirame la posta("Escribí el primer número: ");
+        leete algo("%d" ,&primerNumero);
+        tirame la posta("Escribí el segundo número: ");
+        leete algo("%d",&segundoNumero);
 
-        si es un '-':
-            tirame la posta("%d - %d = %d" , primerNumero, segundoNumero, primerNumero menos segundoNumero);
-            basta chicos;
+        depende de lo que venga en(operador)
+        {
+            si es un '+':
+                tirame la posta("%d + %d = %d\n" , primerNumero, segundoNumero, primerNumero mas segundoNumero);
+                basta chicos;
 
-        si es un '*':
-            tirame la posta("%d * %d = %d" , primerNumero, segundoNumero, primerNumero por segundoNumero);
-            basta chicos;
+            si es un '-':
+                tirame la posta("%d - %d = %d\n" , primerNumero, segundoNumero, primerNumero menos segundoNumero);
+                basta chicos;
 
-        si no queda otra:
-            tirame la posta("Le pifiaste al operador hermano!");
-    }
+            si es un '*':
+                tirame la posta("%d * %d = %d\n" , primerNumero, segundoNumero, primerNumero por segundoNumero);
+                basta chicos;
+
+            si es un '/':
+                chequeame si(segundoNumero es 0) {
+                    tirame la posta ("El segundo numero ingresado fue cero y NO SE PUEDE DIVIDIR POR CERO!!!!!!\n");
+                }
+                sino {
+                    tirame la posta("%d / %d = %d\n" , primerNumero, segundoNumero, primerNumero dividido segundoNumero);
+                }
+                basta chicos;
+
+            si es un '%':
+                tirame la posta("%d % %d = %d\n" , primerNumero, segundoNumero, primerNumero modulo segundoNumero);
+                basta chicos;
+
+            si no queda otra:
+                tirame la posta("Le pifiaste al operador hermano!\n");
+        }
+
+    tirame la posta("Queres seguir usando la calculadora? Presioná 1 para salir: ");
+    leete algo("%d", &salir);
+
+    } siempre que(salir nada que ver con 1);
 ni nos vimo

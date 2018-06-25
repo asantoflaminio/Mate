@@ -45,7 +45,7 @@ ASSIGNATION " sos "
 
 ADD " mas "
 SUB " menos "
-OP_DIV " dividido "
+DIV " dividido "
 MULTIPLY " por "
 
 INCREMENT "aplicar tarifazo"
@@ -115,6 +115,7 @@ END_INSTR ";"
 {ASSIGNATION}			return ASSIGNATION;
 {ADD}				    return ADD;
 {SUB}				    return SUB;
+{DIV}					return DIV;
 {MULTIPLY}				return MULTIPLY;
 {MODULO}                return MODULO;
 

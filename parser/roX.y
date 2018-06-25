@@ -40,7 +40,7 @@ int yylex();
 %token ASSIGNATION;
 %token ADD;
 %token SUB;
-%token OP_DIV;
+%token DIV;
 %token MULTIPLY;
 %token MODULO;
 %token INCREMENT;
@@ -154,7 +154,7 @@ else : ELSE {
 	printf("else");
 };
 
-loop : do open_bracket code close_bracket while open_parenthesis boolean_expression close_parenthesis 
+loop : do open_bracket code close_bracket while open_parenthesis boolean_expression close_parenthesis end_instr 
 | while open_parenthesis boolean_expression close_parenthesis open_bracket code close_bracket
 | for open_parenthesis instruction boolean_expression end_instr var_name increment close_parenthesis open_bracket code close_bracket
 | for open_parenthesis instruction boolean_expression end_instr var_name decrement close_parenthesis open_bracket code close_bracket;
@@ -267,11 +267,11 @@ expression: open_parenthesis expression add term close_parenthesis
 
 
 term: open_parenthesis term multiply factor close_parenthesis
-			| open_parenthesis term op_div factor close_parenthesis
+			| open_parenthesis term div factor close_parenthesis
 			| term factor 
 			| factor
 			| term multiply factor 
-			| term op_div factor
+			| term div factor
             | el_diego;
 
 factor: var_name | integer;
@@ -307,7 +307,7 @@ sub: SUB {
 	printf("-");
 }
 
-op_div: OP_DIV {
+div: DIV {
 	printf("/");
 }
 
