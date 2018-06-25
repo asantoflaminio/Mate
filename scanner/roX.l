@@ -28,6 +28,8 @@ STRING_VAR frase
 CHAR_VAR char 
 VAR_NAME [A-Za-z][0-9A-Za-z_]*
 SQ_BRACKETS "[]"
+OPEN_SQ_BRACKET "["
+CLOSE_SQ_BRACKET "]"
 
 IF "chequeame si"
 ELSE sino
@@ -109,7 +111,6 @@ END_INSTR ";"
 {DIEGO}				    return DIEGO;
 {STRING_VAR}			return STRING_VAR;
 {CHAR_VAR}				return CHAR_VAR;
-{SQ_BRACKETS}				return SQ_BRACKETS;
 
 {IF}					return IF;
 {ELSE}					return ELSE;
@@ -126,6 +127,9 @@ END_INSTR ";"
 {CLOSE_PARENTHESIS}		return CLOSE_PARENTHESIS;
 {OPEN_BRACKET} 			return OPEN_BRACKET;
 {CLOSE_BRACKET} 		return CLOSE_BRACKET;
+{SQ_BRACKETS}				return SQ_BRACKETS;
+{OPEN_SQ_BRACKET}			return OPEN_SQ_BRACKET;
+{CLOSE_SQ_BRACKET}			return CLOSE_SQ_BRACKET;
 
 {ADD}				    return ADD;
 {SUB}				    return SUB;

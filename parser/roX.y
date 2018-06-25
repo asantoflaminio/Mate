@@ -43,6 +43,8 @@ int yylex();
 %token OPEN_BRACKET;
 %token CLOSE_BRACKET;
 %token SQ_BRACKETS;
+%token OPEN_SQ_BRACKET;
+%token CLOSE_SQ_BRACKET;
 %token ASSIGNATION;
 %token ADD;
 %token SUB;
@@ -95,6 +97,9 @@ instruction : declaration assign end_instr
 | var_name assign_string end_instr 
 | var_name increment end_instr
 | var_name decrement end_instr;
+| declaration assign_access_array end_instr;
+
+assign_access_array: assignation var_name open_sq_bracket integer close_sq_bracket;
 
 declaration: type var_name;
 
@@ -106,6 +111,14 @@ type: int_var | string_var | char_var | float_var;
 
 sq_brackets: SQ_BRACKETS{
 	printf("[]");
+}; 
+
+open_sq_bracket: OPEN_SQ_BRACKET{
+	printf("[");
+}; 
+
+close_sq_bracket: CLOSE_SQ_BRACKET{
+	printf("]");
 }; 
 
 int_var: INT_VAR{
@@ -317,7 +330,7 @@ term: open_parenthesis term multiply factor close_parenthesis
 			| term div factor
             | el_diego;
 
-factor: var_name | integer | float ;
+factor: var_name | integer | float | var_name open_sq_bracket integer close_sq_bracket | var_name open_sq_bracket var_name close_sq_bracket;
 
 integer: INTEGER{
 	printf("%d",$1);
