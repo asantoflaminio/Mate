@@ -12,14 +12,17 @@ int yylex();
         int number;
         char *string;
         char character;
+        float floatValue;
 }
 
 %token <number> INTEGER;
 %token <string> STRING;
 %token <string> CHARACTER;
+%token <floatValue> CHARACTER;
 %token TRUE;
 %token FALSE;
 %token INT_VAR;
+%token FLOAT_VAR;
 %token DIEGO;
 %token STRING_VAR;
 %token CHAR_VAR;
@@ -90,7 +93,7 @@ instruction : declaration assign end_instr
 
 declaration: type var_name;
 
-type: int_var | string_var | char_var;
+type: int_var | string_var | char_var | float_var;
 
 int_var: INT_VAR{
 	printf("int");
@@ -108,11 +111,16 @@ char_var : CHAR_VAR{
 	printf("char");
 }
 
+float_var: FLOAT_VAR{
+	printf("float");	
+};
+
 print: print open_parenthesis string cerrar_print | print open_parenthesis string close_parenthesis;
 
 cerrar_print: comma string close_parenthesis
 | comma var_name close_parenthesis
 | comma integer close_parenthesis
+| comma float close_parenthesis
 | comma expression close_parenthesis
 | comma string cerrar_print
 | comma var_name cerrar_print
@@ -274,10 +282,14 @@ term: open_parenthesis term multiply factor close_parenthesis
 			| term div factor
             | el_diego;
 
-factor: var_name | integer;
+factor: var_name | integer | float;
 
 integer: INTEGER{
 	printf("%d",$1);
+}
+
+float: FLOAT{
+	printf("%f",$1);
 }
 
 compare_operator: lowerthan 
