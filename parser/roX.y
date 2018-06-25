@@ -18,7 +18,7 @@ int yylex();
 %token <number> INTEGER;
 %token <string> STRING;
 %token <string> CHARACTER;
-%token <floatValue> CHARACTER;
+%token <floatValue> FLOAT;
 %token TRUE;
 %token FALSE;
 %token INT_VAR;
