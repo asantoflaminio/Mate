@@ -21,10 +21,12 @@ FALSE chamuyo
 
 INT_VAR entero
 FLOAT_VAR "con coma"
+ARRAY_INT_VAR "variete de numeros"
 DIEGO "el Diego"
 STRING_VAR frase
 CHAR_VAR char 
 VAR_NAME [A-Za-z][0-9A-Za-z_]*
+SQ_BRACKETS "[]"
 
 IF "chequeame si"
 ELSE sino
@@ -98,11 +100,14 @@ END_INSTR ";"
 {TRUE}					return TRUE;
 {FALSE}					return FALSE;
 
+{ASSIGNATION}			return ASSIGNATION;
 {INT_VAR}				return INT_VAR;
 {FLOAT_VAR}				return FLOAT_VAR;
+{ARRAY_INT_VAR}			return ARRAY_INT_VAR;
 {DIEGO}				    return DIEGO;
 {STRING_VAR}			return STRING_VAR;
 {CHAR_VAR}				return CHAR_VAR;
+{SQ_BRACKETS}				return SQ_BRACKETS;
 
 {IF}					return IF;
 {ELSE}					return ELSE;
@@ -120,7 +125,6 @@ END_INSTR ";"
 {OPEN_BRACKET} 			return OPEN_BRACKET;
 {CLOSE_BRACKET} 		return CLOSE_BRACKET;
 
-{ASSIGNATION}			return ASSIGNATION;
 {ADD}				    return ADD;
 {SUB}				    return SUB;
 {DIV}					return DIV;
@@ -161,5 +165,3 @@ END_INSTR ";"
 
 
 %%
-
-

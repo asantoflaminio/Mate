@@ -23,6 +23,7 @@ int yylex();
 %token FALSE;
 %token INT_VAR;
 %token FLOAT_VAR;
+%token ARRAY_INT_VAR;
 %token DIEGO;
 %token STRING_VAR;
 %token CHAR_VAR;
@@ -40,6 +41,7 @@ int yylex();
 %token CLOSE_PARENTHESIS;
 %token OPEN_BRACKET;
 %token CLOSE_BRACKET;
+%token SQ_BRACKETS;
 %token ASSIGNATION;
 %token ADD;
 %token SUB;
@@ -83,17 +85,25 @@ code : instruction code | control_sequence code | /*empty*/;
 
 instruction : declaration assign end_instr 
 | declaration assign_string end_instr
+| declaration_array assign_array end_instr
 | declaration end_instr 
 | print end_instr
 | in end_instr 
 | var_name assign end_instr 
 | var_name assign_string end_instr 
+| var_name assign_array end_instr 
 | var_name increment end_instr
 | var_name decrement end_instr;
 
 declaration: type var_name;
 
+declaration_array: array_int_var var_name sq_brackets;
+
 type: int_var | string_var | char_var | float_var;
+
+sq_brackets: SQ_BRACKETS{
+	printf("[]");
+}; 
 
 int_var: INT_VAR{
 	printf("int");
@@ -114,6 +124,14 @@ char_var : CHAR_VAR{
 float_var: FLOAT_VAR{
 	printf("float");	
 };
+
+array_int_var: ARRAY_INT_VAR{
+	printf("int");	
+};
+
+array_int:  open_bracket close_bracket | open_bracket array_exp integer close_bracket | open_bracket integer close_bracket;
+
+array_exp: array_exp integer comma | integer comma;
 
 print: print open_parenthesis string cerrar_print | print open_parenthesis string close_parenthesis;
 
@@ -140,7 +158,7 @@ ampersand: AMPERSAND{
 	printf("&");
 }
 
-control_sequence : if_block | loop | switch_block;
+control_sequence : if_block | loop | switch_block ;
 
 if_block : if open_parenthesis boolean_expression close_parenthesis open_bracket code close_bracket 
 | if open_parenthesis boolean_expression close_parenthesis open_bracket code close_bracket else if_block
@@ -227,6 +245,7 @@ var_name : VAR_NAME {
 	printf("%s",$1);	 
 }
 
+
 string: STRING{
 	printf("%s",$1); 
 };
@@ -238,6 +257,8 @@ character : CHARACTER{
 assign: assignation expression;
 
 assign_string: assignation string;
+
+assign_array: assignation array_int;
 
 assignation: ASSIGNATION {
 	printf("=");
@@ -282,7 +303,7 @@ term: open_parenthesis term multiply factor close_parenthesis
 			| term div factor
             | el_diego;
 
-factor: var_name | integer | float;
+factor: var_name | integer | float ;
 
 integer: INTEGER{
 	printf("%d",$1);
