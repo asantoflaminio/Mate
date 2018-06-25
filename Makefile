@@ -20,6 +20,9 @@ compile:
 	./$(PARSER) < test/cual_sos.arg > test/cual_sos.c
 	gcc -c -w test/cual_sos.c
 	gcc -w cual_sos.o -o cual_sos.out
+	./$(PARSER) < test/cual_float_sos.arg > test/cual_float_sos.c
+	gcc -c -w test/cual_float_sos.c
+	gcc -w cual_float_sos.o -o cual_float_sos.out
 	./$(PARSER) < test/for_test.arg > test/for_test.c
 	gcc -c -w test/for_test.c
 	gcc -w for_test.o -o for_test.out
