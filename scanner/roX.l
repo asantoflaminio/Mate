@@ -15,10 +15,12 @@ COMMA ","
 COLON ":"
 AMPERSAND "&"
 INTEGER [-]?[0-9]+
+FLOAT [0-9]*\.[0-9]+"f"?
 TRUE "la posta"
 FALSE chamuyo
 
 INT_VAR entero
+FLOAT_VAR "con coma"
 DIEGO "el Diego"
 STRING_VAR frase
 CHAR_VAR char 
@@ -74,6 +76,11 @@ END_INSTR ";"
 {INTEGER}				{ yylval.number = atoi(yytext); 
 						  return INTEGER;
 						}
+						
+{FLOAT}					{ yylval.floatValue = new atof(yytext);
+						 return FLOAT;
+						}
+
 
 {STRING}				{ yylval.string = yytext; 
 						  return STRING;
