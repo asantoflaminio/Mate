@@ -21,7 +21,8 @@ FALSE chamuyo
 
 INT_VAR entero
 FLOAT_VAR "con coma"
-ARRAY_INT_VAR "variete de numeros"
+ARRAY_INT_VAR "mix de numeros"
+ARRAY_STR_VAR "mix de frases"
 DIEGO "el Diego"
 STRING_VAR frase
 CHAR_VAR char 
@@ -104,6 +105,7 @@ END_INSTR ";"
 {INT_VAR}				return INT_VAR;
 {FLOAT_VAR}				return FLOAT_VAR;
 {ARRAY_INT_VAR}			return ARRAY_INT_VAR;
+{ARRAY_STR_VAR}			return ARRAY_STR_VAR;
 {DIEGO}				    return DIEGO;
 {STRING_VAR}			return STRING_VAR;
 {CHAR_VAR}				return CHAR_VAR;

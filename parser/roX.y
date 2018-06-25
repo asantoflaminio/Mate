@@ -24,6 +24,7 @@ int yylex();
 %token INT_VAR;
 %token FLOAT_VAR;
 %token ARRAY_INT_VAR;
+%token ARRAY_STR_VAR;
 %token DIEGO;
 %token STRING_VAR;
 %token CHAR_VAR;
@@ -85,19 +86,21 @@ code : instruction code | control_sequence code | /*empty*/;
 
 instruction : declaration assign end_instr 
 | declaration assign_string end_instr
-| declaration_array assign_array end_instr
+| declaration_array_int assign_array_int end_instr
+| declaration_array_str assign_array_str end_instr
 | declaration end_instr 
 | print end_instr
 | in end_instr 
 | var_name assign end_instr 
 | var_name assign_string end_instr 
-| var_name assign_array end_instr 
 | var_name increment end_instr
 | var_name decrement end_instr;
 
 declaration: type var_name;
 
-declaration_array: array_int_var var_name sq_brackets;
+declaration_array_int: array_int_var var_name sq_brackets;
+
+declaration_array_str: array_str_var var_name sq_brackets;
 
 type: int_var | string_var | char_var | float_var;
 
@@ -129,9 +132,18 @@ array_int_var: ARRAY_INT_VAR{
 	printf("int");	
 };
 
+array_str_var: ARRAY_STR_VAR{
+	printf("char*");	
+};
+
+
 array_int:  open_bracket close_bracket | open_bracket array_exp integer close_bracket | open_bracket integer close_bracket;
 
 array_exp: array_exp integer comma | integer comma;
+
+array_str:  open_bracket close_bracket | open_bracket array_exp_str string close_bracket | open_bracket string close_bracket;
+
+array_exp_str: array_exp string comma | string comma;
 
 print: print open_parenthesis string cerrar_print | print open_parenthesis string close_parenthesis;
 
@@ -258,7 +270,9 @@ assign: assignation expression;
 
 assign_string: assignation string;
 
-assign_array: assignation array_int;
+assign_array_int: assignation array_int;
+
+assign_array_str: assignation array_str;
 
 assignation: ASSIGNATION {
 	printf("=");
