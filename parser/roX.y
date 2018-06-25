@@ -35,29 +35,29 @@ int yylex();
 %token BREAK;				
 %token OPEN_PARENTHESIS;
 %token CLOSE_PARENTHESIS;
-%token OPEN_BLOCK;
-%token CLOSE_BLOCK;
-%token OP_ASSIGN;
-%token OP_SUM;
-%token OP_SUB;
+%token OPEN_BRACKET;
+%token CLOSE_BRACKET;
+%token ASSIGNATION;
+%token ADD;
+%token SUB;
 %token OP_DIV;
-%token OP_MUL;
-%token OP_MODULO;
-%token OP_PLUS_ONE;
-%token OP_SUB_ONE;
-%token OP_OR;
-%token OP_AND;
-%token OP_NEG;
-%token OP_LT;
-%token OP_GT;
-%token OP_LE;
-%token OP_GE;
-%token OP_EQ;
-%token OP_DIST;
-%token OP_PRINT;
-%token OP_IN;
+%token MULTIPLY;
+%token MODULO;
+%token INCREMENT;
+%token DECREMENT;
+%token OR;
+%token AND;
+%token NEGATIV;
+%token LOWERTHAN;
+%token GREATERTHAN;
+%token LOWEREQUAL;
+%token GREATEREQUAL;
+%token EQUAL;
+%token DIST;
+%token PRINT;
+%token SCAN;
 %token START;
-%token END_PROG;
+%token FINISH;
 %token END_INSTR;
 %token COMMA;
 %token COLON;
@@ -66,13 +66,13 @@ int yylex();
 %start comienza
 %%
 
-comienza : start code end_prog;
+comienza : start code finish;
 
 start: START {
 	printf("int main(){");
 };
 
-end_prog: END_PROG{
+finish: FINISH{
 	printf("}");
 }
 
@@ -85,8 +85,8 @@ instruction : declaration assign end_instr
 | in end_instr 
 | var_name assign end_instr 
 | var_name assign_string end_instr 
-| var_name op_plus_one end_instr
-| var_name op_sub_one end_instr;
+| var_name increment end_instr
+| var_name decrement end_instr;
 
 declaration: type var_name;
 
@@ -108,7 +108,7 @@ char_var : CHAR_VAR{
 	printf("char");
 }
 
-print: op_print open_parenthesis string cerrar_print | op_print open_parenthesis string close_parenthesis;
+print: print open_parenthesis string cerrar_print | print open_parenthesis string close_parenthesis;
 
 cerrar_print: comma string close_parenthesis
 | comma var_name close_parenthesis
@@ -120,7 +120,7 @@ cerrar_print: comma string close_parenthesis
 | comma expression cerrar_print
 ;
 
-in: op_in open_parenthesis string cerrar_in; 
+in: scan open_parenthesis string cerrar_in; 
 
 cerrar_in: comma ampersand var_name close_parenthesis | comma ampersand var_name cerrar_in;
 
@@ -134,19 +134,19 @@ ampersand: AMPERSAND{
 
 control_sequence : if_block | loop | switch_block;
 
-if_block : if open_parenthesis boolean_expression close_parenthesis open_block code close_block 
-| if open_parenthesis boolean_expression close_parenthesis open_block code close_block else if_block
-| if open_parenthesis boolean_expression close_parenthesis open_block code close_block else open_block code close_block;
+if_block : if open_parenthesis boolean_expression close_parenthesis open_bracket code close_bracket 
+| if open_parenthesis boolean_expression close_parenthesis open_bracket code close_bracket else if_block
+| if open_parenthesis boolean_expression close_parenthesis open_bracket code close_bracket else open_bracket code close_bracket;
 
 if : IF {
 	printf("if");
 };
 
-open_block : OPEN_BLOCK {
+open_bracket : OPEN_BRACKET {
 	printf("{");
 };
 
-close_block : CLOSE_BLOCK {
+close_bracket : CLOSE_BRACKET {
 	printf("}");
 };
 
@@ -154,10 +154,10 @@ else : ELSE {
 	printf("else");
 };
 
-loop : do open_block code close_block while open_parenthesis boolean_expression close_parenthesis 
-| while open_parenthesis boolean_expression close_parenthesis open_block code close_block
-| for open_parenthesis instruction boolean_expression end_instr var_name op_plus_one close_parenthesis open_block code close_block
-| for open_parenthesis instruction boolean_expression end_instr var_name op_sub_one close_parenthesis open_block code close_block;
+loop : do open_bracket code close_bracket while open_parenthesis boolean_expression close_parenthesis 
+| while open_parenthesis boolean_expression close_parenthesis open_bracket code close_bracket
+| for open_parenthesis instruction boolean_expression end_instr var_name increment close_parenthesis open_bracket code close_bracket
+| for open_parenthesis instruction boolean_expression end_instr var_name decrement close_parenthesis open_bracket code close_bracket;
 
 do : DO {
 	printf("do");
@@ -172,7 +172,7 @@ for : FOR {
 };
 
 
-switch_block : switch open_parenthesis var_name close_parenthesis open_block inside_switch close_block;
+switch_block : switch open_parenthesis var_name close_parenthesis open_bracket inside_switch close_bracket;
 
 inside_switch : case character colon code break end_instr default_switch | case character colon code break end_instr inside_switch;
 
@@ -199,19 +199,19 @@ break : BREAK {
 };
 
 
-op_print: OP_PRINT {
+print: PRINT {
 	printf("printf");
 };
 
-op_in: OP_IN{
+scan: SCAN{
 	printf("scanf");
 }
 
-op_plus_one: OP_PLUS_ONE {
+increment: INCREMENT {
 	printf("++");
 };
 
-op_sub_one: OP_SUB_ONE {
+decrement: DECREMENT {
 	printf("--");
 };
 
@@ -227,22 +227,22 @@ character : CHARACTER{
 	printf("%s", $1);
 };
 
-assign: op_assign expression;
+assign: assignation expression;
 
-assign_string: op_assign string;
+assign_string: assignation string;
 
-op_assign: OP_ASSIGN {
+assignation: ASSIGNATION {
 	printf("=");
 }
 
-boolean_expression: boolean_expression op_or boolean_term
+boolean_expression: boolean_expression or boolean_term
 					| boolean_term;
 
-boolean_term: boolean_term op_and boolean_factor
+boolean_term: boolean_term and boolean_factor
 			| boolean_factor;
 
 boolean_factor: open_parenthesis boolean_expression close_parenthesis 
-				| op_neg boolean_factor
+				| negativ boolean_factor
 				| boolean;
 
 boolean: true 
@@ -258,19 +258,19 @@ false: FALSE{
 
 comparation: expression compare_operator expression;
 
-expression: open_parenthesis expression op_sum term close_parenthesis
-			| open_parenthesis expression op_sub term close_parenthesis
+expression: open_parenthesis expression add term close_parenthesis
+			| open_parenthesis expression sub term close_parenthesis
 			| term
-			| expression op_sum term 
-			| expression op_sub term
-			| expression op_modulo term;
+			| expression add term 
+			| expression sub term
+			| expression modulo term;
 
 
-term: open_parenthesis term op_mul factor close_parenthesis
+term: open_parenthesis term multiply factor close_parenthesis
 			| open_parenthesis term op_div factor close_parenthesis
 			| term factor 
 			| factor
-			| term op_mul factor 
+			| term multiply factor 
 			| term op_div factor
             | el_diego;
 
@@ -280,30 +280,30 @@ integer: INTEGER{
 	printf("%d",$1);
 }
 
-compare_operator: op_lt 
-				| op_gt 
-				| op_eq 
-				| op_dist
-				| op_le
-				| op_ge;
+compare_operator: lowerthan 
+				| greaterthan 
+				| equal 
+				| dist
+				| lowerequal
+				| greaterequal;
 
-op_or: OP_OR {
+or: OR {
 	printf("||");
 }
 
-op_and: OP_AND {
+and: AND {
 	printf("&&");
 }
 
-op_mul: OP_MUL {
+multiply: MULTIPLY {
 	printf("*");
 }
 
-op_sum: OP_SUM {
+add: ADD {
 	printf("+");
 }
 
-op_sub: OP_SUB {
+sub: SUB {
 	printf("-");
 }
 
@@ -311,35 +311,35 @@ op_div: OP_DIV {
 	printf("/");
 }
 
-op_neg: OP_NEG {
+negativ: NEGATIV {
 	printf("!");
 }
 
-op_lt: OP_LT {
+lowerthan: LOWERTHAN {
 	printf("<");
 }
 
-op_gt: OP_GT {
+greaterthan: GREATERTHAN {
 	printf(">");
 }
 
-op_eq: OP_EQ {
+equal: EQUAL {
 	printf("==");
 }
 
-op_dist: OP_DIST {
+dist: DIST {
 	printf("!=");
 }
 
-op_le: OP_LE {
+lowerequal: LOWEREQUAL {
 	printf("<=");
 }
 
-op_ge: OP_GE {
+greaterequal: GREATEREQUAL {
 	printf(">=");
 }
 
-op_modulo: OP_MODULO {
+modulo: MODULO {
 	printf("%%");	 
 }
 
