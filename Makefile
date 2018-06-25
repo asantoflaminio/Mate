@@ -10,7 +10,7 @@ all:
 	lex $(SCANNER)
 	@echo " -- Scanner compilado -- "
 	gcc -o $(PARSER) lex.yy.c y.tab.c -ly
-	@echo " -- Compilador compilado -- "
+	@echo " -- Parser compilado -- "
 
 compile:
 	./$(PARSER) < test/factorial.arg > test/factorial.c
