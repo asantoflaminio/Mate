@@ -32,4 +32,4 @@ compile:
 	@echo "Tests compilados"
 
 clean: 	
-	rm -f *.out *.o $(PARSER) lex.yy.c y.tab.c y.tab.h test/factorial.c test/el_diego.c test/cual_sos.c test/calculadora.c test/cual_float_sos.c out.c
+	rm -f *.out *.o $(PARSER) lex.yy.c y.tab.c y.tab.h test/factorial.c test/el_diego.c test/for_test.c test/cual_sos.c test/calculadora.c test/cual_float_sos.c out.c
