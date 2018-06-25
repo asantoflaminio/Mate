@@ -1,10 +1,10 @@
 buenas
     con coma n;
 
-    tirame la posta("Escribi­ un numero de 1 a 4: ");
+    tirame la posta("Escribi un numero de 1 a 4: ");
     leete algo("%f", &n);
 
-    tirame la posta("%f", &n);
+    tirame la posta("%f", n);
 
     chequeame si(n es 1.5)
     {
