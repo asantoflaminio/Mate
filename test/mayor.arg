@@ -1,0 +1,15 @@
+buenas 
+        mix de numeros arreglo[] sos {33,0,-15,22,765,32,208,95,22,47,2,066,363,55,96,225,367,836,993,645,889,6,74,23,42,63,375,245,39,50,857,307,227,49,464,396,44,57,33,757,918,234,446,23,873,12,16,63,-33,400};
+
+        entero actual;
+
+        entero mayor sos arreglo[0];
+ 
+        vengan de a uno empezando por (actual sos 1; actual es menos piola que 50; actual aplicar tarifazo){
+                chequeame si(mayor es menos piola que arreglo[actual]) {
+                        mayor sos arreglo[actual];
+                }
+        }
+ 
+        tirame la posta("\n El mayor es : %d\n", mayor);
+ni nos vimo

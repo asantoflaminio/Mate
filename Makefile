@@ -25,7 +25,14 @@ compile:
 	./$(PARSER) < test/conversor.arg > test/conversor.c
 	gcc -c -w test/conversor.c
 	gcc -w conversor.o -o conversor.out
+	./$(PARSER) < test/mayor.arg > test/mayor.c
+	gcc -c -w test/mayor.c
+	gcc -w mayor.o -o mayor.out
+	./$(PARSER) < test/mayor_2.arg > test/mayor_2.c
+	gcc -c -w test/mayor_2.c
+	gcc -w mayor_2.o -o mayor_2.out
+
 	@echo " -- Tests compilados -- "
 
 clean: 	
-	rm -f *.out *.o $(PARSER) lex.yy.c y.tab.c y.tab.h test/factorial.c test/el_diego.c test/calculadora.c test/conversor.c out.c
+	rm -f *.out *.o $(PARSER) lex.yy.c y.tab.c y.tab.h test/factorial.c test/el_diego.c test/calculadora.c test/conversor.c test/mayor.c test/mayor_2.out out.c

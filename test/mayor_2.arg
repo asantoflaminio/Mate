@@ -1,0 +1,23 @@
+buenas 
+        mix de numeros arreglo[] sos {0,0,0,0,0,0,0,0,0,0};
+
+        entero actual;
+        entero contador;
+        entero auxiliar;
+
+        vengan de a uno empezando por(contador sos 0; contador es menos piola que 10; contador aplicar tarifazo) {
+                tirame la posta("Escribi un numero: ");
+                leete algo("%d", &auxiliar);
+                arreglo[contador] sos auxiliar;
+        }
+
+        entero mayor sos arreglo[0];
+ 
+        vengan de a uno empezando por (actual sos 1; actual es menos piola que 10; actual aplicar tarifazo){
+                chequeame si(mayor es menos piola que arreglo[actual]) {
+                        mayor sos arreglo[actual];
+                }
+        }
+ 
+        tirame la posta("\n El mayor es : %d\n", mayor);
+ni nos vimo
