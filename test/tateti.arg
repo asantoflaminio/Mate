@@ -1,0 +1,141 @@
+buenas
+    mix de frases tablero[] sos { "o", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+
+    entero jugador sos 1;
+    entero i;
+    entero eleccion;
+    frase marca;
+
+    tirame la posta("\n\n\tTa Te Ti\n\n");
+
+    metele
+    {
+
+        tirame la posta("Jugador 1 (X)  -  Jugador 2 (O)\n\n\n");
+
+        tirame la posta("     |     |     \n");
+        tirame la posta("  %s  |  %s  |  %s \n", tablero[1], tablero[2], tablero[3]);
+        tirame la posta("_____|_____|_____\n");
+        tirame la posta("     |     |     \n");
+        tirame la posta("  %s  |  %s  |  %s \n", tablero[4], tablero[5], tablero[6]);
+        tirame la posta("_____|_____|_____\n");
+        tirame la posta("     |     |     \n");
+        tirame la posta("  %s  |  %s  |  %s \n", tablero[7], tablero[8], tablero[9]);
+        tirame la posta("     |     |     \n\n");
+
+        chequeame si(jugador dividido 2 es 1) {
+            jugador sos 1;
+        } sino {
+            jugador sos 2;
+    }
+
+        tirame la posta("Jugador %d, en donde queres poner tu ficha?:  ", jugador);
+        leete algo("%d", &eleccion);
+
+        chequeame si(jugador es 1) {
+            marca sos "X"; 
+        } sino {
+            marca sos "O";
+    }
+
+        chequeame si (eleccion es 1 y tablero[1] es "1") {
+            tablero[1] sos marca;   
+        } sino chequeame si (eleccion es 2 y tablero[2] es "2") {
+            tablero[2] sos marca;            
+        } sino chequeame si (eleccion es 3 y tablero[3] es "3") {
+            tablero[3] sos marca;            
+        } sino chequeame si (eleccion es 4 y tablero[4] es "4") {
+            tablero[4] sos marca;
+        } sino chequeame si (eleccion es 5 y tablero[5] es "5") {
+            tablero[5] sos marca;          
+        } sino chequeame si (eleccion es 6 y tablero[6] es "6") {
+            tablero[6] sos marca;            
+        } sino chequeame si (eleccion es 7 y tablero[7] es "7") {
+            tablero[7] sos marca;            
+        } sino chequeame si (eleccion es 8 y tablero[8] es "8") {
+            tablero[8] sos marca;            
+        } sino chequeame si (eleccion es 9 y tablero[9] es "9") {
+            tablero[9] sos marca;            
+        } sino {
+            tirame la posta("Movimiento invalido");
+            jugador devaluar;
+        leete una cosa;
+        }
+
+        chequeame si (tablero[1] es tablero[2] y tablero[2] es tablero[3]) {
+            i sos 1;        
+        } sino chequeame si (tablero[4] es tablero[5] y tablero[5] es tablero[6]) {
+            i sos 1;            
+        } sino chequeame si (tablero[7] es tablero[8] y tablero[8] es tablero[9]) {
+            i sos 1;            
+        } sino chequeame si (tablero[1] es tablero[4] y tablero[4] es tablero[7]) {
+            i sos 1;            
+        } sino chequeame si (tablero[2] es tablero[5] y tablero[5] es tablero[8]) {
+            i sos 1;            
+        } sino chequeame si (tablero[3] es tablero[6] y tablero[6] es tablero[9]) {
+            i sos 1;            
+        } sino chequeame si (tablero[1] es tablero[5] y tablero[5] es tablero[9]) {
+            i sos 1;            
+        } sino chequeame si (tablero[3] es tablero[5] y tablero[5] es tablero[7]) {
+            i sos 1;            
+        } sino chequeame si (tablero[1] nada que ver con "1") {
+        chequeame si(tablero[2] nada que ver con "2") {
+             chequeame si (tablero[3] nada que ver con "3") {
+                chequeame si(tablero[4] nada que ver con "4") {
+                    chequeame si(tablero[5] nada que ver con "5") {
+                        chequeame si(tablero[6] nada que ver con "6") {
+                            chequeame si(tablero[7] nada que ver con "7") {
+                                chequeame si(tablero[8] nada que ver con "8") {
+                                    chequeame si(tablero[9] nada que ver con "9") {
+                                        i sos 0;
+                                    } sino {
+                                        i sos -1;
+                                    }
+                                } sino {
+                                    i sos -1;
+                                }
+                            } sino {
+                                i sos -1;
+                            }
+                        } sino {
+                            i sos -1;
+                        }
+                    } sino {
+                        i sos -1;
+                    }
+                } sino {
+                    i sos -1;
+                }
+            } sino {
+                i sos -1;
+            }
+        } sino {
+            i sos -1;
+        }
+    } sino {
+            i sos -1;
+    }
+
+    jugador aplicar tarifazo;
+
+    } siempre que (i es -1);
+    
+    tirame la posta("Jugador 1 (X)  -  Jugador 2 (O)\n\n\n");
+
+    tirame la posta("     |     |     \n");
+    tirame la posta("  %s  |  %s  |  %s \n", tablero[1], tablero[2], tablero[3]);
+    tirame la posta("_____|_____|_____\n");
+    tirame la posta("     |     |     \n");
+    tirame la posta("  %s  |  %s  |  %s \n", tablero[4], tablero[5], tablero[6]);
+    tirame la posta("_____|_____|_____\n");
+    tirame la posta("     |     |     \n");
+    tirame la posta("  %s  |  %s  |  %s \n", tablero[7], tablero[8], tablero[9]);
+    tirame la posta("     |     |     \n\n");    
+    
+    chequeame si (i es 1) {
+        tirame la posta("--> Gano el jugador %d ", jugador menos 1);
+    } sino {
+        tirame la posta("--> Empate, sale revancha?");
+    }
+    leete una cosa;
+ni nos vimo
