@@ -8,7 +8,7 @@
 START "buenas"
 FINISH "ni nos vimo"
 
-STRING ["][^\n\r]*["]
+STRING ["][^\n\r"]*["]
 CHARACTER ['][^\n\r0-9]['] 
 CHAR [^\n\r]
 COMMA ","
