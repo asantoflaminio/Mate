@@ -23,7 +23,7 @@ buenas
         tirame la posta("  %s  |  %s  |  %s \n", tablero[7], tablero[8], tablero[9]);
         tirame la posta("     |     |     \n\n");
 
-        chequeame si(jugador dividido 2 es 1) {
+        chequeame si(jugador modulo 2 es 1) {
             jugador sos 1;
         } sino {
             jugador sos 2;
@@ -78,40 +78,10 @@ buenas
             i sos 1;            
         } sino chequeame si (tablero[3] es tablero[5] y tablero[5] es tablero[7]) {
             i sos 1;            
-        } sino chequeame si (tablero[1] nada que ver con "1") {
-        chequeame si(tablero[2] nada que ver con "2") {
-             chequeame si (tablero[3] nada que ver con "3") {
-                chequeame si(tablero[4] nada que ver con "4") {
-                    chequeame si(tablero[5] nada que ver con "5") {
-                        chequeame si(tablero[6] nada que ver con "6") {
-                            chequeame si(tablero[7] nada que ver con "7") {
-                                chequeame si(tablero[8] nada que ver con "8") {
-                                    chequeame si(tablero[9] nada que ver con "9") {
-                                        i sos 0;
-                                    } sino {
-                                        i sos -1;
-                                    }
-                                } sino {
-                                    i sos -1;
-                                }
-                            } sino {
-                                i sos -1;
-                            }
-                        } sino {
-                            i sos -1;
-                        }
-                    } sino {
-                        i sos -1;
-                    }
-                } sino {
-                    i sos -1;
-                }
-            } sino {
-                i sos -1;
-            }
-        } sino {
-            i sos -1;
-        }
+        } sino chequeame si (tablero[1] nada que ver con "1" y tablero[2] nada que ver con "2" y tablero[3] nada que ver con "3" y
+        tablero[4] nada que ver con "4" y tablero[5] nada que ver con "5" y tablero[6] nada que ver con "6" y tablero[7] 
+        nada que ver con "7" y tablero[8] nada que ver con "8" y tablero[9] nada que ver con "9") {
+        i sos 0;
     } sino {
             i sos -1;
     }
