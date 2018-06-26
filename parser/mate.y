@@ -91,16 +91,17 @@ finish : FINISH{
 code : instruction code | control_sequence code | /*empty*/ ;
 
 instruction : declaration assign end_instr 
-| declaration assign_string end_instr
 | declaration_array_int assign_array_int end_instr
 | declaration_array_str assign_array_str end_instr
 | declaration end_instr 
 | print end_instr
 | in end_instr 
 | var_name assign end_instr 
-| var_name assign_string end_instr 
 | var_name increment end_instr
-| var_name decrement end_instr;
+| var_name decrement end_instr
+| var_name open_sq_bracket var_name close_sq_bracket assign end_instr  
+| var_name open_sq_bracket integer close_sq_bracket assign end_instr; 
+
 
 declaration : type var_name;
 
@@ -290,8 +291,6 @@ character : CHARACTER{
 
 assign : assignation expression;
 
-assign_string : assignation string;
-
 assign_array_int : assignation array_int;
 
 assign_array_str : assignation array_str;
@@ -300,7 +299,7 @@ assignation : ASSIGNATION {
 	printf("=");
 };
 
-boolean_expression : boolean_expression or boolean_term | boolean_term;
+boolean_expression : boolean_term or boolean_expression | boolean_term;
 
 boolean_term : boolean_term and boolean_factor | boolean_factor;
 
@@ -342,6 +341,7 @@ term : open_parenthesis term multiply factor close_parenthesis
 factor : var_name 
 | integer 
 | float 
+| string
 | var_name open_sq_bracket var_name close_sq_bracket 
 | var_name open_sq_bracket integer close_sq_bracket; 
 
