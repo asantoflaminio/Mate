@@ -31,8 +31,12 @@ compile:
 	./$(PARSER) < test/mayor_2.arg > test/mayor_2.c
 	gcc -c -w test/mayor_2.c
 	gcc -w mayor_2.o -o mayor_2.out
+	./$(PARSER) < test/tateti.arg > test/tateti.c
+	gcc -c -w test/tateti.c
+	gcc -w tateti.o -o tateti.out
+
 
 	@echo " -- Tests compilados -- "
 
 clean: 	
-	rm -f *.out *.o $(PARSER) lex.yy.c y.tab.c y.tab.h test/factorial.c test/el_diego.c test/calculadora.c test/conversor.c test/mayor.c test/mayor_2.c out.c
+	rm -f *.out *.o $(PARSER) lex.yy.c y.tab.c y.tab.h test/factorial.c test/el_diego.c test/calculadora.c test/conversor.c test/mayor.c test/mayor_2.c test/tateti.c out.c

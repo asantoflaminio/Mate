@@ -75,6 +75,7 @@ MODULO "modulo"
 
 PRINTF "tirame la posta"
 SCAN "leete algo"
+GETCHAR "leete una cosa"
 
 END_INSTR ";"
 
@@ -156,7 +157,7 @@ END_INSTR ";"
 {DIST}				    return DIST;
 {PRINTF}				return PRINTF;
 {SCAN}					return SCAN;
-
+{GETCHAR}				return GETCHAR;
 {START}					return START;
 {FINISH}				return FINISH;
 

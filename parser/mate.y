@@ -70,6 +70,7 @@ int yylex();
 %token DIST;
 %token PRINTF;
 %token SCAN;
+%token GETCHAR;
 %token START;
 %token FINISH;
 %token END_INSTR;
@@ -100,7 +101,8 @@ instruction : declaration assign end_instr
 | var_name increment end_instr
 | var_name decrement end_instr
 | var_name open_sq_bracket var_name close_sq_bracket assign end_instr  
-| var_name open_sq_bracket integer close_sq_bracket assign end_instr; 
+| var_name open_sq_bracket integer close_sq_bracket assign end_instr
+| getchar end_instr; 
 
 
 declaration : type var_name;
@@ -173,7 +175,7 @@ array_str : open_bracket close_bracket
 | open_bracket array_exp_str string close_bracket 
 | open_bracket string close_bracket;
 
-array_exp_str : array_exp string comma | string comma;
+array_exp_str : array_exp_str string comma | string comma;
 
 print : printf open_parenthesis string cerrar_print;
 
@@ -267,6 +269,10 @@ printf : PRINTF {
 
 scan : SCAN{
 	printf("scanf");
+};
+
+getchar : GETCHAR{
+	printf("getchar()");
 };
 
 increment : INCREMENT {
