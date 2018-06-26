@@ -1,7 +1,0 @@
-buenas
-    entero n;
-
-    vengan de a uno empezando por(n sos 0; n es menos piola que 5; n aplicar tarifazo){
-        tirame la posta("Soy %d\n", n);
-    }
-ni nos vimo

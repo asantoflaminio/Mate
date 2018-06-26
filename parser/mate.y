@@ -236,7 +236,8 @@ for : FOR {
 
 switch_block : switch open_parenthesis var_name close_parenthesis open_bracket inside_switch close_bracket;
 
-inside_switch : case character colon code break end_instr default_switch | case character colon code break end_instr inside_switch;
+inside_switch : case character colon code break end_instr default_switch | case character colon code break end_instr inside_switch
+				| case integer colon code break end_instr default_switch | case integer colon code break end_instr inside_switch ;
 
 default_switch : default colon code;
 

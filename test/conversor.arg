@@ -1,0 +1,67 @@
+buenas
+    entero n;
+    entero m;
+    con coma f;
+    con coma cotD sos 27.5;
+    con coma cotR sos 7.6;
+    con coma cotE sos 33.1;
+    
+    
+    
+    tirame la posta("1- Pesos a moneda extranjera\n");
+    tirame la posta("2- Moneda extranjera a pesos\n");
+    leete algo("%d", &n);
+    chequeame si(n es 1)
+    {
+        tirame la posta("Escribir el monto en pesos:\n");
+        leete algo("%f", &f);
+        tirame la posta("Pasar a:\n");
+        tirame la posta("1: Dólares\n");
+        tirame la posta("2: Reales\n");
+        tirame la posta("3: Euros\n");
+        leete algo("%d", &m);
+        depende de lo que venga en(m){
+            si es un 1:
+                tirame la posta("Monto en dólares: %f\n" , f dividido cotD);
+                basta chicos;
+            si es un 2:
+                tirame la posta("Monto en reales: %f\n" , f dividido cotR);
+                basta chicos;
+            si es un 3:
+                tirame la posta("Monto en euros: %f\n" , f dividido cotE);
+                basta chicos;
+            si no queda otra:
+                tirame la posta("Opcion inválida\n");
+        }
+    }
+    sino
+    {
+        tirame la posta("Elegir moneda inicial\n");
+        tirame la posta("1: Dólares\n");
+        tirame la posta("2: Reales\n");
+        tirame la posta("3: Euros\n");
+        leete algo("%d", &m);
+        depende de lo que venga en(m){
+            si es un 1:
+                tirame la posta("Escribir el monto en dólares:\n");
+                leete algo("%f", &f);
+                tirame la posta("Monto en pesos: %f\n" , f por cotD);
+                basta chicos;
+            si es un 2:
+                tirame la posta("Escribir el monto en reales:\n");
+                leete algo("%f", &f);
+                tirame la posta("Monto en pesos: %f\n" , f por cotR);
+                basta chicos;
+            si es un 3:
+                tirame la posta("Escribir el monto en euros:\n");
+                leete algo("%f", &f);
+                tirame la posta("Monto en pesos: %f\n" , f por cotE);
+                basta chicos;
+            si no queda otra:
+                tirame la posta("Opcion inválida\n");
+        }
+    }
+
+    
+
+ni nos vimo

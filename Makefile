@@ -19,22 +19,13 @@ compile:
 	./$(PARSER) < test/el_diego.arg > test/el_diego.c
 	gcc -c -w test/el_diego.c
 	gcc -w el_diego.o -o el_diego.out
-	./$(PARSER) < test/cual_sos.arg > test/cual_sos.c
-	gcc -c -w test/cual_sos.c
-	gcc -w cual_sos.o -o cual_sos.out
-	./$(PARSER) < test/cual_float_sos.arg > test/cual_float_sos.c
-	gcc -c -w test/cual_float_sos.c
-	gcc -w cual_float_sos.o -o cual_float_sos.out
-	./$(PARSER) < test/for_test.arg > test/for_test.c
-	gcc -c -w test/for_test.c
-	gcc -w for_test.o -o for_test.out
 	./$(PARSER) < test/calculadora.arg > test/calculadora.c
 	gcc -c -w test/calculadora.c
 	gcc -w calculadora.o -o calculadora.out
-	./$(PARSER) < test/array.arg > test/array.c
-	gcc -c -w test/array.c
-	gcc -w array.o -o array.out
+	./$(PARSER) < test/conversor.arg > test/conversor.c
+	gcc -c -w test/conversor.c
+	gcc -w conversor.o -o conversor.out
 	@echo " -- Tests compilados -- "
 
 clean: 	
-	rm -f *.out *.o $(PARSER) lex.yy.c y.tab.c y.tab.h test/factorial.c test/el_diego.c test/for_test.c test/cual_sos.c test/calculadora.c test/cual_float_sos.c test/array.c out.c
+	rm -f *.out *.o $(PARSER) lex.yy.c y.tab.c y.tab.h test/factorial.c test/el_diego.c test/calculadora.c test/conversor.c out.c
