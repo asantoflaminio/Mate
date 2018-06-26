@@ -17,9 +17,9 @@ AMPERSAND "&"
 INTEGER [-]?[0-9]+
 FLOAT [0-9]*\.[0-9]+"f"?
 TRUE "la posta"
-FALSE chamuyo
+FALSE "chamuyo"
 
-INT_VAR entero
+INT_VAR "entero"
 FLOAT_VAR "con coma"
 ARRAY_INT_VAR "mix de numeros"
 ARRAY_STR_VAR "mix de frases"
@@ -27,16 +27,16 @@ DIEGO "el Diego"
 UNA_GAMBA "una gamba"
 UNA_LUCA "una luca"
 UN_PALO "un palo"
-STRING_VAR frase
-CHAR_VAR char 
+STRING_VAR "frase"
+CHAR_VAR "letra" 
 VAR_NAME [A-Za-z][0-9A-Za-z_]*
 SQ_BRACKETS "[]"
 OPEN_SQ_BRACKET "["
 CLOSE_SQ_BRACKET "]"
 
 IF "chequeame si"
-ELSE sino
-DO metele
+ELSE "sino"
+DO "metele"
 WHILE "siempre que"
 FOR "vengan de a uno empezando por"
 
@@ -51,27 +51,27 @@ CLOSE_BRACKET "}"
 OPEN_PARENTHESIS "("
 CLOSE_PARENTHESIS ")"
 
-ASSIGNATION " sos "
+ASSIGNATION "sos"
 
-ADD " mas "
-SUB " menos "
-DIV " dividido "
-MULTIPLY " por "
+ADD "mas"
+SUB "menos"
+DIV "dividido"
+MULTIPLY "por"
 
 INCREMENT "aplicar tarifazo"
 DECREMENT "devaluar"
 
-OR " o "
-AND " y " 
-NEGATIV " ni ahi "
+OR "o"
+AND "y" 
+NEGATIV "ni ahi"
 
-LOWERTHAN " es menos piola que "
-GREATERTHAN " es mas piola que "
-EQUAL " es "
-DIST " nada que ver con "
-LOWEREQUAL " es o es menos piola que "
-GREATEREQUAL " es o es mas piola que "
-MODULO " modulo "
+LOWERTHAN "es menos piola que"
+GREATERTHAN "es mas piola que"
+EQUAL "es"
+DIST "nada que ver con"
+LOWEREQUAL "es o es menos piola que"
+GREATEREQUAL "es o es mas piola que"
+MODULO "modulo"
 
 PRINTF "tirame la posta"
 SCAN "leete algo"
@@ -145,7 +145,7 @@ END_INSTR ";"
 {DECREMENT}			    return DECREMENT;
 
 {OR}					return OR;
-{AND}				    return AND;
+{AND}					return AND;
 {NEGATIV}				return NEGATIV;
 
 {LOWERTHAN}				return LOWERTHAN;
