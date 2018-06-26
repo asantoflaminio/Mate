@@ -100,10 +100,7 @@ instruction : declaration assign end_instr
 			| var_name assign end_instr 
 			| var_name assign_string end_instr 
 			| var_name increment end_instr
-			| var_name decrement end_instr
-			| declaration assign_access_array;
-
-assign_access_array : assignation var_name open_sq_bracket integer close_sq_bracket end_instr;
+			| var_name decrement end_instr;
 
 declaration : type var_name;
 
