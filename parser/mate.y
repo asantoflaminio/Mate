@@ -431,7 +431,7 @@ close_parenthesis : CLOSE_PARENTHESIS {
 
 %%
 
-int yywrap(){a
+int yywrap(){
 	return 1;
 }
 
@@ -440,7 +440,6 @@ int main (){
 }
 
 void
-yyerror (char const *s)
-{
+yyerror (char const *s){
   fprintf (stderr, "%s\n", s);
 }
