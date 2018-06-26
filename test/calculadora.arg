@@ -1,5 +1,5 @@
 buenas
-    char operador;
+    letra operador;
     con coma primerNumero;
     con coma segundoNumero;
     entero salir;
