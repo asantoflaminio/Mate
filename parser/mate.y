@@ -91,16 +91,16 @@ finish : FINISH{
 code : instruction code | control_sequence code | /*empty*/ ;
 
 instruction : declaration assign end_instr 
-			| declaration assign_string end_instr
-			| declaration_array_int assign_array_int end_instr
-			| declaration_array_str assign_array_str end_instr
-			| declaration end_instr 
-			| print end_instr
-			| in end_instr 
-			| var_name assign end_instr 
-			| var_name assign_string end_instr 
-			| var_name increment end_instr
-			| var_name decrement end_instr;
+| declaration assign_string end_instr
+| declaration_array_int assign_array_int end_instr
+| declaration_array_str assign_array_str end_instr
+| declaration end_instr 
+| print end_instr
+| in end_instr 
+| var_name assign end_instr 
+| var_name assign_string end_instr 
+| var_name increment end_instr
+| var_name decrement end_instr;
 
 declaration : type var_name;
 
@@ -163,14 +163,14 @@ array_str_var : ARRAY_STR_VAR{
 };
 
 array_int : open_bracket close_bracket 
-          | open_bracket array_exp integer close_bracket 
-          | open_bracket integer close_bracket;
+| open_bracket array_exp integer close_bracket 
+| open_bracket integer close_bracket;
 
 array_exp : array_exp integer comma | integer comma;
 
 array_str : open_bracket close_bracket 
-          | open_bracket array_exp_str string close_bracket 
-          | open_bracket string close_bracket;
+| open_bracket array_exp_str string close_bracket 
+| open_bracket string close_bracket;
 
 array_exp_str : array_exp string comma | string comma;
 
@@ -180,7 +180,8 @@ cerrar_print : comma expression cerrar_print | close_parenthesis;
 
 in : scan open_parenthesis string cerrar_in; 
 
-cerrar_in : comma ampersand var_name close_parenthesis | comma ampersand var_name cerrar_in;
+cerrar_in : comma ampersand var_name close_parenthesis 
+| comma ampersand var_name cerrar_in;
 
 comma : COMMA {
 	printf(",");     
@@ -215,8 +216,7 @@ else : ELSE {
 loop : do open_bracket code close_bracket while open_parenthesis boolean_expression close_parenthesis end_instr 
 | while open_parenthesis boolean_expression close_parenthesis open_bracket code close_bracket
 | for open_parenthesis instruction boolean_expression end_instr var_name increment close_parenthesis open_bracket code close_bracket
-| for open_parenthesis instruction boolean_expression end_instr var_name decrement close_parenthesis open_bracket code close_bracket
-;
+| for open_parenthesis instruction boolean_expression end_instr var_name decrement close_parenthesis open_bracket code close_bracket;
 
 do : DO {
 	printf("do");
@@ -233,8 +233,10 @@ for : FOR {
 
 switch_block : switch open_parenthesis var_name close_parenthesis open_bracket inside_switch close_bracket;
 
-inside_switch : case character colon code break end_instr default_switch | case character colon code break end_instr inside_switch
-				| case integer colon code break end_instr default_switch | case integer colon code break end_instr inside_switch ;
+inside_switch : case character colon code break end_instr default_switch 
+| case character colon code break end_instr inside_switch
+| case integer colon code break end_instr default_switch 
+| case integer colon code break end_instr inside_switch;
 
 default_switch : default colon code;
 
@@ -302,7 +304,9 @@ boolean_expression : boolean_expression or boolean_term | boolean_term;
 
 boolean_term : boolean_term and boolean_factor | boolean_factor;
 
-boolean_factor : open_parenthesis boolean_expression close_parenthesis | negativ boolean_factor | boolean;
+boolean_factor : open_parenthesis boolean_expression close_parenthesis 
+| negativ boolean_factor 
+| boolean;
 
 boolean : true | false | comparation;
 
@@ -317,29 +321,29 @@ false : FALSE{
 comparation : expression compare_operator expression;
 
 expression : open_parenthesis expression add term close_parenthesis
- 		   | open_parenthesis expression sub term close_parenthesis
-		   | term
-		   | expression add term 
-		   | expression sub term
-		   | expression modulo term;
+| open_parenthesis expression sub term close_parenthesis
+| term
+| expression add term 
+| expression sub term
+| expression modulo term;
 
 
 term : open_parenthesis term multiply factor close_parenthesis
-	 | open_parenthesis term div factor close_parenthesis
-	 | term factor 
-	 | factor
-	 | term multiply factor 
-	 | term div factor
-	 | el_diego
-	 | una_gamba
-	 | una_luca
-	 | un_palo;
+| open_parenthesis term div factor close_parenthesis
+| term factor 
+| factor
+| term multiply factor 
+| term div factor
+| el_diego
+| una_gamba
+| una_luca
+| un_palo;
 
 factor : var_name 
-	   | integer 
-	   | float 
-	   | var_name open_sq_bracket var_name close_sq_bracket 
-	   | var_name open_sq_bracket integer close_sq_bracket; 
+| integer 
+| float 
+| var_name open_sq_bracket var_name close_sq_bracket 
+| var_name open_sq_bracket integer close_sq_bracket; 
 
 
 integer : INTEGER{
@@ -351,11 +355,11 @@ float : FLOAT{
 };
 
 compare_operator : lowerthan 
-				 | greaterthan 
-				 | equal 
-				 | dist
-				 | lowerequal
-				 | greaterequal;
+| greaterthan 
+| equal 
+| dist
+| lowerequal
+| greaterequal;
 
 or : OR {
 	printf("||");
@@ -427,7 +431,7 @@ close_parenthesis : CLOSE_PARENTHESIS {
 
 %%
 
-int yywrap(){
+int yywrap(){a
 	return 1;
 }
 

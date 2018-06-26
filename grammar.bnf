@@ -2,27 +2,42 @@
 
 <code> ::= "" | <instruction> <code> | <control_sequence> <code>
 
-<instruction> ::= <declaration> <asign>"END_INSTR" 
-|<declaration> <assign_string>"END_INSTR" 
-|<declaration>"END_INSTR" 
-| <print>"END_INSTR" 
-| "VAR_NAME" <assign>"END_INSTR" 
-| "VAR_NAME" <assign_string>"END_INSTR" 
+<instruction> ::= <declaration> <asign> "END_INSTR" 
+| <declaration> <assign_string> "END_INSTR" 
+| <declaration_array_int> <assign_array_int> "END_INSTR"
+| <declaration_array_str> <assign_array_str> "END_INSTR"
+| <declaration> "END_INSTR" 
+| <print> "END_INSTR" 
+| in"END_INSTR"
+| "VAR_NAME" <assign> "END_INSTR" 
+| "VAR_NAME" <assign_string> "END_INSTR" 
 | "VAR_NAME" "INCREMENT" 
 | "VAR_NAME" "DECREMENT" 
-| in"END_INSTR"
 
 <declaration> ::= <type> "VAR_NAME"
 
+<declaration_array_int> ::= "ARRAY_INT_VAR" "VAR_NAME" "SQ_BRACKETS"
+
+<declaration_array_str> ::= "ARRAY_STR_VAR" "VAR_NAME" "SQ_BRACKETS"
+
 <type> ::= "INT_VAR" | "STRING_VAR" | "CHAR_VAR" | "FLOAT_VAR"
 
-<assign> ::= "ASSIGNATION" <expression>
+<array_int> ::= "OPEN_BRACKET" "CLOSE_BRACKET"
+| "OPEN_BRACKET" <array_exp> "INTEGER" "CLOSE_BRACKET"
+| "OPEN_BRACKET" "INTEGER" "CLOSE_BRACKET"
 
-<assign_string> ::= "ASSIGNATION" "STRING"
+<array_exp> ::= <array_exp> "INTEGER" "COMMA" | "INTEGER" "COMMA";
 
-<print> ::= "PRINT" "OPEN_PARENTHESIS" <cerrar_print> | "PRINT" "OPEN_PARENTHESIS" "STRING" "CLOSE_PARENTHESIS"
+<array_str> ::= "OPEN_BRACKET" "CLOSE_BRACKET"
+| "OPEN_BRACKET" <array_exp_str> "STRING" "CLOSE_BRACKET"
+| "OPEN_BRACKET" "STRING" "CLOSE_BRACKET"
 
-<cerrar_print> ::= "COMMA" "STRING" "CLOSE_PARENTHESIS" | "COMMA" "VAR_NAME" "CLOSE_PARENTHESIS" | "COMMA" "INTEGER" "CLOSE_PARENTHESIS" | "COMMA" "FLOAT" "CLOSE_PARENTHESIS" | "COMMA" <expression> "CLOSE_PARENTHESIS" | "COMMA" "STRING" <cerrar_print> | "COMMA" "VAR_NAME" <cerrar_print> | "COMMA" "INTEGER" <cerrar_print> | "COMMA" <expression> <cerrar_print>
+<array_exp_str> ::= <array_exp> "STRING" "COMMA" | "STRING" "COMMA";
+
+
+<print> ::= "PRINT" "OPEN_PARENTHESIS" "STRING" <cerrar_print> 
+
+<cerrar_print> ::= "COMMA" "EXPRESSION" <cerrar_print> | "CLOSE_PARENTHESIS" 
 
 <in> ::= "SCAN" "OPEN_PARENTHESIS" "STRING" <cerrar_in>
 
@@ -30,16 +45,31 @@
 
 <control_sequence> ::= <if_block> | <loop> | <switch_block>
 
-<if_block> ::= "IF" "OPEN_PARENTHESIS" <boolean_expression> "CLOSE_PARENTHESIS" <open_bracket> <code> <close_bracket> |
- "IF" "OPEN_PARENTHESIS" <boolean_expression> "CLOSE_PARENTHESIS" "OPEN_BRACKET" <code> "CLOSE_BRACKET" "ELSE" <if_block> | "IF" "OPEN_PARENTHESIS" <boolean_expression> "CLOSE_PARENTHESIS" "OPEN_BRACKET" <code> "CLOSE_BRACKET" "ELSE" "OPEN_BRACKET" <code> "CLOSE_BRACKET"
+<if_block> ::= "IF" "OPEN_PARENTHESIS" <boolean_expression> "CLOSE_PARENTHESIS" <open_bracket> <code> <close_bracket> 
+| "IF" "OPEN_PARENTHESIS" <boolean_expression> "CLOSE_PARENTHESIS" "OPEN_BRACKET" <code> "CLOSE_BRACKET" "ELSE" <if_block> 
+| "IF" "OPEN_PARENTHESIS" <boolean_expression> "CLOSE_PARENTHESIS" "OPEN_BRACKET" <code> "CLOSE_BRACKET" "ELSE" "OPEN_BRACKET" <code> "CLOSE_BRACKET"
 
-<loop> ::= "DO" "OPEN_BRACKET" <code> "CLOSE_BRACKET" "WHILE" "OPEN_PARENTHESIS"<boolean_expresion> "CLOSE_PARENTHESIS"  | "WHILE" "OPEN_PARENTHESIS" <boolean_expresion> "CLOSE_PARENTHESIS"  "OPEN_BRACKET" <code> "CLOSE_BRACKET" | "FOR" "OPEN_PARENTHESIS"<instruction> <boolean_expression> "END_INSTR" "VAR_NAME" "INCREMENT" "CLOSE_PARENTHESIS" "OPEN_BRACKET" <code> "CLOSE_BRACKET"
+<loop> ::= "DO" "OPEN_BRACKET" <code> "CLOSE_BRACKET" "WHILE" "OPEN_PARENTHESIS"<boolean_expresion> "CLOSE_PARENTHESIS"  
+| "WHILE" "OPEN_PARENTHESIS" <boolean_expresion> "CLOSE_PARENTHESIS"  "OPEN_BRACKET" <code> "CLOSE_BRACKET" 
+| "FOR" "OPEN_PARENTHESIS"<instruction> <boolean_expression> "END_INSTR" "VAR_NAME" "INCREMENT" "CLOSE_PARENTHESIS" "OPEN_BRACKET" <code> "CLOSE_BRACKET"
+| "FOR" "OPEN_PARENTHESIS"<instruction> <boolean_expression> "END_INSTR" "VAR_NAME" "DECREMENT" "CLOSE_PARENTHESIS" "OPEN_BRACKET" <code> "CLOSE_BRACKET"
 
 <switch_block> ::= "SWITCH" "OPEN_PARENTHESIS" "VAR_NAME" "CLOSE_PARENTHESIS" "OPEN_BRACKET" <inside_switch> "CLOSE_BRACKET"
 
-<inside_switch> ::= "CASE" "CHARACTER" "COLON" <code> "BREAK" "END_INSTR" <default_switch> | "CASE" "CHARACTER" "COLON" <code> "BREAK" "END_INSTR" <inside_switch>
+<inside_switch> ::= "CASE" "CHARACTER" "COLON" <code> "BREAK" "END_INSTR" <default_switch> 
+| "CASE" "CHARACTER" "COLON" <code> "BREAK" "END_INSTR" <inside_switch>
+| "CASE" "INTEGER" "COLON" <code> "BREAK" "END_INSTR" <default_switch> 
+| "CASE" "INTEGER" "COLON" <code> "BREAK" "END_INSTR" <inside_switch>
 
 <default_switch> ::= "DEFAULT" "COLON" <code>
+
+<assign> ::= "ASSIGNATION" <expression>
+
+<assign_string> ::= "ASSIGNATION" "STRING"
+
+<assign_array_int> ::= "ASSIGNATION" <array_int> 
+
+<assign_array_str> ::= "ASSIGNATION" <array_str> 
 
 <boolean_expression> ::= <boolean_expression> "OR" <boolean_term> | <boolean_term>
 
@@ -51,12 +81,28 @@
 
 <comparation> ::=  <expression> <compare_operator> <expression>
 
-<expression> ::= "OPEN_PARENTHESIS" <expression> "ADD" <term> "CLOSE_PARENTHESIS" | "OPEN_PARENTHESIS" <expression> "SUB" <term> "CLOSE_PARENTHESIS" | <term> 
-| <expression> "ADD" <term> | <expression> "SUB" <term> | <expression> "MODULO" <term>
+<expression> ::= "OPEN_PARENTHESIS" <expression> "ADD" <term> "CLOSE_PARENTHESIS" 
+| "OPEN_PARENTHESIS" <expression> "SUB" <term> "CLOSE_PARENTHESIS" 
+| <term> 
+| <expression> "ADD" <term> 
+| <expression> "SUB" <term> 
+| <expression> "MODULO" <term>
 
-<term> ::= "OPEN_PARENTHESIS" <term> "MULTIPLY" <factor> "CLOSE_PARENTHESIS" | "OPEN_PARENTHESIS" <term> "DIV" <factor> "CLOSE_PARENTHESIS" | <term> <factor> | <factor> 
-| <term> "MULTIPLY" <factor> | <term> "DIV" <factor> | "EL_DIEGO"
+<term> ::= "OPEN_PARENTHESIS" <term> "MULTIPLY" <factor> "CLOSE_PARENTHESIS" 
+| "OPEN_PARENTHESIS" <term> "DIV" <factor> "CLOSE_PARENTHESIS" 
+| <term> <factor> 
+| <factor> 
+| <term> "MULTIPLY" <factor> 
+| <term> "DIV" <factor> 
+| "EL_DIEGO"
+| "UNA_GAMBA"
+| "UNA_LUCA"
+| "UN_PALO"
 
-<factor> ::= "VAR_NAME" | "INTEGER" | "FLOAT"
+<factor> ::= "VAR_NAME" 
+| "INTEGER" 
+| "FLOAT" 
+| "VAR_NAME" "OPEN_SQ_BRACKET" "VAR_NAME" "CLOSE_SQ_BRACKET" 
+| "VAR_NAME" "OPEN_SQ_BRACKET" "INTEGER" "CLOSE_SQ_BRACKET"
 
 <compare_operator> ::= "LOWERTHAN" | "GREATERTHAN" | "EQUAL" |"DIST" | "LOWEREQUAL" | "GREATEREQUAL"
