@@ -35,4 +35,4 @@ compile:
 	@echo " -- Tests compilados -- "
 
 clean: 	
-	rm -f *.out *.o $(PARSER) lex.yy.c y.tab.c y.tab.h test/factorial.c test/el_diego.c test/calculadora.c test/conversor.c test/mayor.c test/mayor_2.out out.c
+	rm -f *.out *.o $(PARSER) lex.yy.c y.tab.c y.tab.h test/factorial.c test/el_diego.c test/calculadora.c test/conversor.c test/mayor.c test/mayor_2.c out.c
